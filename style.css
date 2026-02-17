@@ -53,6 +53,8 @@ opacity: 0;}
 }
 /* Mobile adjustments */
 @media (max-width: 600px){
+    .mainTitle{font-size: 32px;}
+    .subTitle{font-size: 17px;padding: 0 20px;}
 
     h1{
         font-size: 28px;
