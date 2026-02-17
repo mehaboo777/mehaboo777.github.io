@@ -1,47 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>For Minnuhh ❤️</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Minnuhh ❤️</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div id = "intro">
-<div class = "envelope" ontouchstart="openLetter()" onclick="openLetter()">
-    <div class = "seal"> ❤️ </div>
-    <p class = "tap ">Tap to open </p>
 
-</div>
-</div>
-<div id = "mainSite" style="display: none;">
-    <section class = "hero">
-        <h1 class = "mainTitle">FOR YOU MINNUH KUTTYHH💖 </h1>
- <P class = "subTitle">EVERY MOMENT WITH YOU IS MY FEVORITE MEMORY</P>
- <div class = "scrollDown">↓</div>
-    </section>
+<!-- BIG INTRO ENVELOPE -->
+<div id="intro">
+    <div id="mainEnvelope" class="envelope" ontouchstart="openLetter()" onclick="openLetter()">
 
-    <div class="container">
-        <h1>Heyyh Mahhh Lovehhh 💖</h1>
-
-        <img src="her.jpg" class="photo">
-
-        <p id="message">
-            You are the best thing that ever happened to me.
-        </p>
-        <p id = "typing"> </p>
-        <h2 id="counter"></h2>
-
-        <button onclick="surprise()">Open My Heart 💌</button>
+        <div class="seal">❤️</div>
+        <p class="tap">Tap to open</p>
     </div>
-    <h3 id = "loveMsg"></h3>
-    <div id="hearts"></div>
+</div>
 
-    <audio id = "music" loop>
+<!-- MAIN SITE -->
+<div id="mainSite">
+
+<!-- HERO -->
+<section class="hero">
+    
+<h1>Heyyh Mahhh Lovehhh 💖</h1>
+    <p>You are the best thing that ever happened to me.</p>
+    <h2 id="daysCounter"></h2>
+</section>
+
+<!-- MESSAGE -->
+<section class="loveSection">
+    <p id="typing"></p>
+    <h3 id="loveMsg"></h3>
+</section>
+
+<!-- SMALL ENVELOPE (OPEN MY HEART) -->
+<section class="heartSection">
+    <div class="miniEnvelope" onclick="revealMemories()" ontouchstart="revealMemories()">
+        <div class="miniSeal">💌</div>
+        <p>Open My Heart</p>
+    </div>
+</section>
+
+<!-- PHOTOS REVEAL -->
+<div id="heartGallery"></div>
+
+<!-- SLIDE TO CONTINUE -->
+<div id="sliderBox">
+    <div id="sliderText">Slide to continue →</div>
+    <div id="slider">
+        <div id="sliderBtn"></div>
+    </div>
+</div>
+
+<audio id="music" loop>
     <source src="song.mp3" type="audio/mp3">
 </audio>
-</div>
+
 <script src="script.js"></script>
 </body>
 </html>

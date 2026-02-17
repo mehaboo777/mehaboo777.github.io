@@ -1,66 +1,132 @@
-let siteStarted = false;
-function surprise(){
-    document.getElementById("loveMsg").innerHTML =
-    "I love you forever minnuuhh❤️";
-    const music = document.getElementById ("music");
-    music.play();
-    typeRunning = true;
-    index = 0;
-   document.getElementById("typing").innerHTML = "";
-    typeWriter();
-}
-const startDate = new Date("2023-05-26");
-function updateCounter(){
-    const now = new Date();
-    const diff = now - startDate;
+/* BIG ENVELOPE */
+function openLetter(){
 
-    const days = Math.floor(diff / (1000*60*60*24));
+    const env = document.getElementById("mainEnvelope");
 
-    document.getElementById("counter").innerHTML =
-    "We have been together for " + days + " days ❤️";
-}
+    // play envelope animation
+    env.classList.add("opening");
 
-function createHeart(){
-    if (!siteStarted) return;
-    const heart = document.createElement("div");
-    heart.innerHTML = "❤️";
-    heart.classList.add("falling-heart");
-    heart.style.left = Math.random()*100 + "vw";
+    setTimeout(()=>{
 
-    document.getElementById("hearts").appendChild(heart);
+        // show site FIRST
+        document.getElementById("intro").style.display="none";
+        const main=document.getElementById("mainSite");
+        main.style.display="block";
 
-setTimeout (() => {
-    heart.remove()
-},5000);
+        // NOW browser can render elements
+        showDays();
+
+        // start music
+        document.getElementById("music").play();
+
+        // start animations
+        setTimeout(()=>{
+            startIntroAnimations();
+initSlider();
+
+        },200);
+
+    },1200);
 }
 
-const text  = "every day with you is my fav day";
-let index = 0;
-let typeRunning = false;
+
+
+/* TYPING TEXT */
+const text = "Every day with you is my favorite day ❤️";
+let i=0;
 
 function typeWriter(){
-    if (index<text.length){
-      document.getElementById("typing").innerHTML += text[index];
-        index++;
-        setTimeout(typeWriter,80);
-    }else {
-        typeRunning = false;
+    if(i<text.length){
+        document.getElementById("typing").innerHTML+=text.charAt(i);
+        i++;
+        setTimeout(typeWriter,60);
     }
 }
-function openLetter (){
-    const env = document.querySelector('.envelope');
-    env.classList.add("open");
-    setTimeout(()=> {
-        siteStarted= true;
-        document.getElementById("intro").style.display = "none";
-        document.getElementById("mainSite").style.display="block";
-        const music = document.getElementById("music");
-        music.play();
-        setInterval(createHeart,300);
-        setInterval(updateCounter,1000);
-    
-    },900);
-}
-window.onload = function(){
 
-};
+/* PHOTO REVEAL */
+const lovePhotos=["love1.jpg","love2.jpg","love3.jpg","love4.jpg"];
+
+function revealMemories(){
+    const gallery=document.getElementById("heartGallery");
+
+    lovePhotos.forEach((photo,index)=>{
+        setTimeout(()=>{
+            let img=document.createElement("img");
+            img.src=photo;
+            img.className="memoryPhoto";
+            gallery.appendChild(img);
+
+            setTimeout(()=>img.classList.add("show"),100);
+        },index*1500);
+    });
+}
+
+function showDays(){
+
+    const counter = document.getElementById("daysCounter");
+
+    const startDate = new Date(2023,4,26); 
+    // NOTE: month index: 4 = May (JavaScript months start from 0)
+
+    const today = new Date();
+
+    const diff = today.getTime() - startDate.getTime();
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    counter.innerHTML =
+    "We've been together for <span class='highlight'>" + days + "</span> days ❤️";
+}
+
+
+function startIntroAnimations(){
+
+    const title=document.querySelector(".hero h1");
+    const subtitle=document.querySelector(".hero p");
+    const days=document.getElementById("daysCounter");
+    const typing=document.getElementById("typing");
+
+    setTimeout(()=>{
+        title.classList.add("showText");
+    },200);
+
+    setTimeout(()=>{
+        subtitle.classList.add("showText");
+    },900);
+
+    setTimeout(()=>{
+        days.classList.add("showText");
+    },1700);
+
+    setTimeout(()=>{
+        typing.classList.add("showText");
+        typeWriter();
+    },2600);
+}
+function initSlider(){
+
+    const sliderBtn=document.getElementById("sliderBtn");
+    if(!sliderBtn) return;
+
+    let isDown=false;
+
+    sliderBtn.onmousedown=()=>isDown=true;
+    document.onmouseup=()=>isDown=false;
+
+    document.onmousemove=(e)=>{
+        if(!isDown)return;
+
+        let slider=document.getElementById("slider");
+        let rect=slider.getBoundingClientRect();
+
+        let x=e.clientX-rect.left;
+        if(x<0)x=0;
+        if(x>230)x=230;
+
+        sliderBtn.style.left=x+"px";
+
+        if(x>220){
+            window.location.href="memories.html";
+        }
+    };
+}
