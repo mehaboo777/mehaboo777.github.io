@@ -1,63 +1,57 @@
+/* =========================
+   ENVELOPE OPEN
+   ========================= */
+
 function openLetter(){
 
-
 const env = document.getElementById("mainEnvelope");
-
-// play envelope open animation
 env.classList.add("opening");
 
 setTimeout(()=>{
 
-    // hide envelope screen
+    // hide envelope
     document.getElementById("intro").style.display="none";
 
-    // show intro cinematic scene
+    // show intro scene
     const scene = document.getElementById("introScene");
-    scene.style.display = "flex";
-    startFloatingHearts();
+    scene.style.display="flex";
 
-const title = document.querySelector(".introTitle");
-const sub = document.querySelector(".introSub");
-const days = document.getElementById("daysCounter");
-const typing = document.getElementById("typing");
+    // start floating hearts ONLY now
+    initHearts();
 
-// show title
-setTimeout(()=>{ title.classList.add("showIntro"); },400);
+    const title = document.querySelector(".introTitle");
+    const sub = document.querySelector(".introSub");
+    const days = document.getElementById("daysCounter");
+    const typing = document.getElementById("typing");
 
-// show subtitle
-setTimeout(()=>{ sub.classList.add("showIntro"); },1100);
+    // animations sequence
+    setTimeout(()=>{ title.classList.add("showIntro"); },400);
+    setTimeout(()=>{ sub.classList.add("showIntro"); },1100);
 
-// show days counter
-setTimeout(()=>{
-showDays();
-days.classList.add("showIntro");
-},1900);
-
-// start typing LAST
-setTimeout(()=>{
-typing.classList.add("showIntro");
-typeIntro();
-},2800);
-
-    // small delay so browser renders scene first
     setTimeout(()=>{
-        scene.style.opacity = "1";   // fade in
-    },20);
+        showDays();
+        days.classList.add("showIntro");
+    },1900);
 
-    // AFTER scene is visible → start days + typing
+    setTimeout(()=>{
+        typing.classList.add("showIntro");
+        typeIntro();
+    },2800);
 
-    // start music softly
+    // music
     const music = document.getElementById("music");
     if(music){
         music.volume = 0.05;
-        music.play().catch(()=>{}); // prevents mobile autoplay error
+        music.play().catch(()=>{});
     }
 
 },1200);
-
 }
 
 
+/* =========================
+   DAYS COUNTER
+   ========================= */
 
 function showDays(){
 
@@ -74,10 +68,14 @@ counter.innerHTML =
 }
 }
 
+
+/* =========================
+   INTRO TYPING TEXT
+   ========================= */
+
 const text="Every day with you is my favorite day ❤️";
 let i=0;
 let typingStarted=false;
-
 
 function typeIntro(){
 
@@ -102,10 +100,9 @@ typing();
 }
 
 
-function startIntro(){
-showDays();
-setTimeout(typeIntro,2000);
-}
+/* =========================
+   LOVE LETTER
+   ========================= */
 
 const letterMessage=`Every moment with you feels like a beautiful dream that I never want to wake from.
 You are my happiness, my peace and my forever.
@@ -122,12 +119,18 @@ typeLetter();
 function typeLetter(){
 const el=document.getElementById("letterText");
 if(!el) return;
+
 if(li<letterMessage.length){
 el.innerHTML+=letterMessage.charAt(li);
 li++;
 setTimeout(typeLetter,30);
 }
 }
+
+
+/* =========================
+   MEMORY PAGE ANIMATION
+   ========================= */
 
 window.addEventListener("load",()=>{
 const items=document.querySelectorAll(".memoryItem");
@@ -137,58 +140,66 @@ item.classList.add("show");
 },index*800);
 });
 });
-window.addEventListener("resize",()=>{
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-});
-function startFloatingHearts(){
+
+
+/* =========================
+   PERFECT FLOATING HEARTS
+   (MOBILE + PC FIXED)
+   ========================= */
+
+function initHearts(){
 
 const canvas = document.getElementById("bgHearts");
 if(!canvas) return;
 
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resizeCanvas(){
+    const ratio = window.devicePixelRatio || 1;
+
+    canvas.width = window.innerWidth * ratio;
+    canvas.height = window.innerHeight * ratio;
+
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+
+    ctx.setTransform(ratio,0,0,ratio,0,0);
+}
+
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
 let hearts=[];
 
-for(let i=0;i<40;i++){
-hearts.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:Math.random()*18+8,
-speed:Math.random()*0.6+0.2,
-opacity:Math.random()*0.6+0.2
-});
+for(let i=0;i<45;i++){
+    hearts.push({
+        x:Math.random()*window.innerWidth,
+        y:Math.random()*window.innerHeight,
+        size:Math.random()*14+6,
+        speed:Math.random()*0.7+0.25,
+        opacity:Math.random()*0.5+0.2
+    });
 }
 
-function drawHearts(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-hearts.forEach(h=>{
-    h.y -= h.speed;
+    hearts.forEach(h=>{
+        h.y -= h.speed;
 
-    if(h.y < -30){
-        h.y = canvas.height+30;
-        h.x = Math.random()*canvas.width;
-    }
+        if(h.y < -20){
+            h.y = window.innerHeight + 20;
+            h.x = Math.random()*window.innerWidth;
+        }
 
-    ctx.globalAlpha = h.opacity;
-    ctx.fillStyle = "#ff7eb3";
-    ctx.font = h.size+"px serif";
-    ctx.fillText("❤",h.x,h.y);
-});
+        ctx.globalAlpha = h.opacity;
+        ctx.fillStyle = "#ff6fa0";
+        ctx.font = h.size+"px serif";
+        ctx.fillText("❤",h.x,h.y);
+    });
 
-requestAnimationFrame(drawHearts);
+    requestAnimationFrame(draw);
 }
 
-drawHearts();
-
-window.addEventListener("resize",()=>{
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-});
-
+draw();
 }
-
