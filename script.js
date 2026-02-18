@@ -1,8 +1,17 @@
 /* =========================
+   PAGE DETECTION SYSTEM
+   ========================= */
+
+const isIntroPage = document.getElementById("mainEnvelope") !== null;
+
+
+/* =========================
    ENVELOPE OPEN
    ========================= */
 
 function openLetter(){
+
+if(!isIntroPage) return;
 
 const env = document.getElementById("mainEnvelope");
 env.classList.add("opening");
@@ -12,11 +21,11 @@ setTimeout(()=>{
     // hide envelope
     document.getElementById("intro").style.display="none";
 
-    // show intro scene
+    // show intro scene properly
     const scene = document.getElementById("introScene");
-    scene.style.display="flex";
+    scene.classList.add("active");
 
-    // start floating hearts ONLY now
+    // start hearts now
     initHearts();
 
     const title = document.querySelector(".introTitle");
@@ -24,19 +33,22 @@ setTimeout(()=>{
     const days = document.getElementById("daysCounter");
     const typing = document.getElementById("typing");
 
-    // animations sequence
-    setTimeout(()=>{ title.classList.add("showIntro"); },400);
-    setTimeout(()=>{ sub.classList.add("showIntro"); },1100);
+    /* ---- CINEMATIC TEXT SEQUENCE ---- */
 
-    setTimeout(()=>{
-        showDays();
-        days.classList.add("showIntro");
-    },1900);
+    /* wait for card to finish appearing */
+setTimeout(()=> title.classList.add("showIntro"), 400);
+setTimeout(()=> sub.classList.add("showIntro"), 1100);
 
-    setTimeout(()=>{
-        typing.classList.add("showIntro");
-        typeIntro();
-    },2800);
+setTimeout(()=>{
+    showDays();
+    days.classList.add("showIntro");
+},1900);
+
+setTimeout(()=>{
+    typing.classList.add("showIntro");
+    typeIntro();
+},2800);
+
 
     // music
     const music = document.getElementById("music");
@@ -58,15 +70,26 @@ function showDays(){
 const start = new Date(2023,4,26);
 const today = new Date();
 const diff = today - start;
-const days = Math.floor(diff/(1000*60*60*24));
+const finalDays = Math.floor(diff/(1000*60*60*24));
 
 const counter = document.getElementById("daysCounter");
 
-if(counter){
+let current = finalDays - 40;
+if(current < 0) current = 0;
+
+function animate(){
+current++;
 counter.innerHTML =
-"We've been together for <span class='highlight'>" + days + "</span> days ❤️";
+"We've been together for <span class='highlight'>" + current + "</span> days ❤️";
+
+if(current < finalDays){
+requestAnimationFrame(animate);
 }
 }
+
+animate();
+}
+
 
 
 /* =========================
@@ -100,20 +123,20 @@ typing();
 }
 
 
-/* =========================
-   LOVE LETTER
-   ========================= */
 
-const letterMessage=`Every moment with you feels like a beautiful dream that I never want to wake from.
-You are my happiness, my peace and my forever.
-Thank you for loving me and staying beside me.`;
-
-let li=0;
+let letterStarted = false;
 
 function openRealLetter(){
+
+if(letterStarted) return;   // prevents double typing
+letterStarted = true;
+
 document.getElementById("letterClosed").style.display="none";
-document.getElementById("realLetter").style.display="block";
-typeLetter();
+
+const letter = document.getElementById("realLetter");
+letter.style.display="block";
+
+startLetterTyping();
 }
 
 function typeLetter(){
@@ -148,6 +171,7 @@ item.classList.add("show");
    ========================= */
 
 function initHearts(){
+if(!document.getElementById("bgHearts")) return;
 
 const canvas = document.getElementById("bgHearts");
 if(!canvas) return;
@@ -203,3 +227,66 @@ function draw(){
 
 draw();
 }
+/* ===== PERFECT LETTER TYPING (FIXED) ===== */
+
+const loveLetter = [
+"I still remember the first day I texted you.",
+"I didn’t know that message would change my life forever.",
+"",
+"From our first meeting…",
+"to our bus journeys…",
+"to the moment I held your hand for the first time…",
+"",
+"Every second with you became a memory I never want to lose.",
+"",
+"You are not just someone I love,",
+"you are my peace,",
+"my happiness,",
+"and the safest place my heart has ever found.",
+"",
+"That night… our first kiss…",
+"will always be the best day of my life.",
+"",
+"No matter how many days pass,",
+"I promise I will always choose you again and again.",
+"",
+"I love you more than words can ever explain. ❤️"
+];
+
+function startLetterTyping(){
+
+const el = document.getElementById("letterText");
+if(!el) return;
+
+el.innerHTML = "";
+
+let line = 0;
+let char = 0;
+
+function type(){
+
+// FINISHED LETTER
+if(line >= loveLetter.length){
+    // remove typing cursor at the end
+    el.innerHTML = el.innerHTML.replace(/\|$/, "");
+    return;
+}
+
+// typing characters
+if(char < loveLetter[line].length){
+    el.innerHTML += loveLetter[line][char];
+    char++;
+    setTimeout(type,35);
+}
+else{
+    el.innerHTML += "<br>";
+    line++;
+    char = 0;
+    setTimeout(type,450);
+}
+
+}
+
+type();
+}
+
