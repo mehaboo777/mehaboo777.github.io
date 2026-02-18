@@ -8,13 +8,14 @@
 </head>
 
 <body>
+<canvas id="starCanvas"></canvas>
 
 <!-- BIG INTRO ENVELOPE -->
 <div id="intro">
     <div id="mainEnvelope" class="envelope" ontouchstart="openLetter()" onclick="openLetter()">
 
         <div class="seal">❤️</div>
-        <p class="tap">Tap to open</p>
+        <p class="tap">OPEN IT BUBUHHH</p>
     </div>
 </div>
 
@@ -37,11 +38,14 @@
 
 <!-- SMALL ENVELOPE (OPEN MY HEART) -->
 <section class="heartSection">
-    <div class="miniEnvelope" onclick="revealMemories()" ontouchstart="revealMemories()">
-        <div class="miniSeal">💌</div>
-        <p>Open My Heart</p>
+    <div id = "loveHeart">
+        <div class = "heartCore">❤️</div>
+        <div id="holdText"> Hold my heart</div> 
+        <div id="progressBar"></div>
     </div>
+
 </section>
+<canvas id="sparkCanvas"></canvas>
 
 <!-- PHOTOS REVEAL -->
 <div id="heartGallery"></div>
