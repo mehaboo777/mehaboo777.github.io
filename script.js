@@ -1,368 +1,194 @@
-/* BIG ENVELOPE */
 function openLetter(){
 
-    const env = document.getElementById("mainEnvelope");
 
-    // play envelope animation
-    env.classList.add("opening");
+const env = document.getElementById("mainEnvelope");
 
+// play envelope open animation
+env.classList.add("opening");
+
+setTimeout(()=>{
+
+    // hide envelope screen
+    document.getElementById("intro").style.display="none";
+
+    // show intro cinematic scene
+    const scene = document.getElementById("introScene");
+    scene.style.display = "flex";
+    startFloatingHearts();
+
+const title = document.querySelector(".introTitle");
+const sub = document.querySelector(".introSub");
+const days = document.getElementById("daysCounter");
+const typing = document.getElementById("typing");
+
+// show title
+setTimeout(()=>{ title.classList.add("showIntro"); },400);
+
+// show subtitle
+setTimeout(()=>{ sub.classList.add("showIntro"); },1100);
+
+// show days counter
+setTimeout(()=>{
+showDays();
+days.classList.add("showIntro");
+},1900);
+
+// start typing LAST
+setTimeout(()=>{
+typing.classList.add("showIntro");
+typeIntro();
+},2800);
+
+    // small delay so browser renders scene first
     setTimeout(()=>{
+        scene.style.opacity = "1";   // fade in
+    },20);
 
-        // show site FIRST
-        document.getElementById("intro").style.display="none";
-        const main=document.getElementById("mainSite");
-        main.style.display="block";
+    // AFTER scene is visible → start days + typing
 
-        // NOW browser can render elements
-        showDays();
-
-        // start music
-       const music = document.getElementById("music");
-music.volume = 0.05; // very soft
-music.play();
-
-
-        // start animations
-        setTimeout(()=>{
-            startIntroAnimations();
-initSlider();
-
-        },200);
-
-    },1200);
-}
-
-
-
-/* TYPING TEXT */
-const text = "Every day with you is my favorite day ❤️";
-let i=0;
-
-function typeWriter(){
-    if(i<text.length){
-        document.getElementById("typing").innerHTML+=text.charAt(i);
-        i++;
-        setTimeout(typeWriter,60);
+    // start music softly
+    const music = document.getElementById("music");
+    if(music){
+        music.volume = 0.05;
+        music.play().catch(()=>{}); // prevents mobile autoplay error
     }
+
+},1200);
+
 }
 
-/* PHOTO REVEAL */
-const loveMemories=[
-    {img:"love1.jpg",text:"The first time I looked at you ❤️"},
-    {img:"love2.jpg",text:"Our late night talks 🌙"},
-    {img:"love3.jpg",text:"I still smile at this memory 😊"},
-    {img:"love4.jpg",text:"My favorite person in the world 💖"}
-];
-
-
-function revealMemories(){
-
-    const gallery=document.getElementById("heartGallery");
-
-    loveMemories.forEach((memory,index)=>{
-
-        setTimeout(()=>{
-
-            const card=document.createElement("div");
-            card.className="memoryCard";
-
-            const img=document.createElement("img");
-            img.src=memory.img;
-            img.className="memoryPhoto";
-
-            const caption=document.createElement("div");
-            caption.className="caption";
-            caption.innerText=memory.text;
-
-            card.appendChild(img);
-            card.appendChild(caption);
-            gallery.appendChild(card);
-
-            setTimeout(()=>{
-                card.classList.add("show");
-                img.classList.add("show");
-            },100);
-
-        },index*1800);
-    });
-}
 
 
 function showDays(){
 
-    const counter = document.getElementById("daysCounter");
+const start = new Date(2023,4,26);
+const today = new Date();
+const diff = today - start;
+const days = Math.floor(diff/(1000*60*60*24));
 
-    const startDate = new Date(2023,4,26); 
-    // NOTE: month index: 4 = May (JavaScript months start from 0)
+const counter = document.getElementById("daysCounter");
 
-    const today = new Date();
+if(counter){
+counter.innerHTML =
+"We've been together for <span class='highlight'>" + days + "</span> days ❤️";
+}
+}
 
-    const diff = today.getTime() - startDate.getTime();
+const text="Every day with you is my favorite day ❤️";
+let i=0;
+let typingStarted=false;
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-    counter.innerHTML =
-    "We've been together for <span class='highlight'>" + days + "</span> days ❤️";
+function typeIntro(){
+
+if(typingStarted) return;
+typingStarted=true;
+
+const t=document.getElementById("typing");
+t.innerHTML="";
+i=0;
+
+function typing(){
+if(i<text.length){
+t.innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,60);
+}else{
+setTimeout(()=>{window.location.href="home.html";},2500);
+}
+}
+
+typing();
 }
 
 
-function startIntroAnimations(){
-
-    const title=document.querySelector(".hero h1");
-    const subtitle=document.querySelector(".hero p");
-    const days=document.getElementById("daysCounter");
-    const typing=document.getElementById("typing");
-
-    setTimeout(()=>{
-        title.classList.add("showText");
-    },200);
-
-    setTimeout(()=>{
-        subtitle.classList.add("showText");
-    },900);
-
-    setTimeout(()=>{
-        days.classList.add("showText");
-    },1700);
-
-    setTimeout(()=>{
-        typing.classList.add("showText");
-        typeWriter();
-    },2600);
-}
-function initSlider(){
-
-    const sliderBtn = document.getElementById("sliderBtn");
-    const slider = document.getElementById("slider");
-
-    if(!sliderBtn || !slider) return;
-
-    let isDragging = false;
-
-    // ---------- PC (mouse) ----------
-    sliderBtn.addEventListener("mousedown", () => {
-        isDragging = true;
-    });
-
-    document.addEventListener("mouseup", () => {
-        isDragging = false;
-    });
-
-    document.addEventListener("mousemove", (e) => {
-        if(!isDragging) return;
-        moveSlider(e.clientX);
-    });
-
-    // ---------- MOBILE (touch) ----------
-    sliderBtn.addEventListener("touchstart", () => {
-        isDragging = true;
-    });
-
-    document.addEventListener("touchend", () => {
-        isDragging = false;
-    });
-
-    document.addEventListener("touchmove", (e) => {
-        if(!isDragging) return;
-        moveSlider(e.touches[0].clientX);
-    });
-
-    // ---------- movement logic ----------
-    function moveSlider(clientX){
-
-        const rect = slider.getBoundingClientRect();
-
-        let x = clientX - rect.left;
-
-        if(x < 0) x = 0;
-        if(x > rect.width - 50) x = rect.width - 50;
-
-        sliderBtn.style.left = x + "px";
-
-        // if reached end → go to next page
-        if(x > rect.width - 60){
-            window.location.href = "memories.html";
-        }
-    }
-}
-// HOLD HEART INTERACTION
-
-const heart = document.getElementById("loveHeart");
-const bar = document.getElementById("progressBar");
-
-let holdTime = 0;
-let holding = false;
-let holdInterval;
-
-if(heart){
-
-    // touch start
-    heart.addEventListener("touchstart", startHold);
-    heart.addEventListener("mousedown", startHold);
-
-    // release
-    heart.addEventListener("touchend", stopHold);
-    heart.addEventListener("mouseup", stopHold);
+function startIntro(){
+showDays();
+setTimeout(typeIntro,2000);
 }
 
-function startHold(){
-    holding = true;
-    holdTime = 0;
+const letterMessage=`Every moment with you feels like a beautiful dream that I never want to wake from.
+You are my happiness, my peace and my forever.
+Thank you for loving me and staying beside me.`;
 
-    holdInterval = setInterval(()=>{
+let li=0;
 
-        holdTime += 100;
-        bar.style.width = (holdTime/1500)*100 + "%";
-
-        // completed hold
-        if(holdTime >= 1500){
-            clearInterval(holdInterval);
-            triggerHeartOpen();
-        }
-
-    },100);
+function openRealLetter(){
+document.getElementById("letterClosed").style.display="none";
+document.getElementById("realLetter").style.display="block";
+typeLetter();
 }
 
-function stopHold(){
-    holding = false;
-    clearInterval(holdInterval);
-    bar.style.width = "0%";
+function typeLetter(){
+const el=document.getElementById("letterText");
+if(!el) return;
+if(li<letterMessage.length){
+el.innerHTML+=letterMessage.charAt(li);
+li++;
+setTimeout(typeLetter,30);
+}
 }
 
-function triggerHeartOpen(){
+window.addEventListener("load",()=>{
+const items=document.querySelectorAll(".memoryItem");
+items.forEach((item,index)=>{
+setTimeout(()=>{
+item.classList.add("show");
+},index*800);
+});
+});
+window.addEventListener("resize",()=>{
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+});
+function startFloatingHearts(){
 
-    document.getElementById("holdText").innerText = "You opened my heart ❤️";
+const canvas = document.getElementById("bgHearts");
+if(!canvas) return;
 
-    const heart = document.getElementById("loveHeart");
-    const rect = heart.getBoundingClientRect();
-
-    const x = rect.left + rect.width/2;
-    const y = rect.top + rect.height/2;
-
-    createSparkles(x,y);
-
-    fadeMusicUp();   // NEW
-
-    setTimeout(()=>{
-        revealMemories();
-    },600);
-}
-
-// SPARKLE EFFECT
-
-const canvas = document.getElementById("sparkCanvas");
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let particles = [];
+let hearts=[];
 
-function createSparkles(x,y){
+for(let i=0;i<40;i++){
+hearts.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*18+8,
+speed:Math.random()*0.6+0.2,
+opacity:Math.random()*0.6+0.2
+});
+}
 
-    for(let i=0;i<35;i++){
-        particles.push({
-            x:x,
-            y:y,
-            vx:(Math.random()-0.5)*6,
-            vy:(Math.random()-0.5)*6,
-            size:Math.random()*4+2,
-            life:80
-        });
+function drawHearts(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+hearts.forEach(h=>{
+    h.y -= h.speed;
+
+    if(h.y < -30){
+        h.y = canvas.height+30;
+        h.x = Math.random()*canvas.width;
     }
-}
 
-function animateSparkles(){
-
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    particles.forEach((p,index)=>{
-
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life--;
-
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-        ctx.fillStyle="rgba(255,180,220,"+(p.life/80)+")";
-        ctx.fill();
-
-        if(p.life<=0){
-            particles.splice(index,1);
-        }
-    });
-
-    requestAnimationFrame(animateSparkles);
-}
-
-animateSparkles();
-window.addEventListener("resize",()=>{
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    ctx.globalAlpha = h.opacity;
+    ctx.fillStyle = "#ff7eb3";
+    ctx.font = h.size+"px serif";
+    ctx.fillText("❤",h.x,h.y);
 });
-function fadeMusicUp(){
 
-    const music = document.getElementById("music");
-
-    let vol = 0.05;
-
-    const fade = setInterval(()=>{
-
-        vol += 0.02;
-
-        if(vol >= 0.6){
-            vol = 0.6;
-            clearInterval(fade);
-        }
-
-        music.volume = vol;
-
-    },200);
-}
-// STAR SKY
-
-const starCanvas = document.getElementById("starCanvas");
-const starCtx = starCanvas.getContext("2d");
-
-starCanvas.width = window.innerWidth;
-starCanvas.height = window.innerHeight;
-
-let stars = [];
-
-for(let i=0;i<120;i++){
-    stars.push({
-        x:Math.random()*starCanvas.width,
-        y:Math.random()*starCanvas.height,
-        size:Math.random()*2,
-        opacity:Math.random(),
-        speed:Math.random()*0.2+0.05
-    });
+requestAnimationFrame(drawHearts);
 }
 
-function drawStars(){
-
-    starCtx.clearRect(0,0,starCanvas.width,starCanvas.height);
-
-    stars.forEach(star=>{
-        star.y += star.speed;
-
-        if(star.y > starCanvas.height){
-            star.y = 0;
-            star.x = Math.random()*starCanvas.width;
-        }
-
-        starCtx.beginPath();
-        starCtx.arc(star.x,star.y,star.size,0,Math.PI*2);
-        starCtx.fillStyle="rgba(255,255,255,"+star.opacity+")";
-        starCtx.fill();
-    });
-
-    requestAnimationFrame(drawStars);
-}
-
-drawStars();
+drawHearts();
 
 window.addEventListener("resize",()=>{
-    starCanvas.width = window.innerWidth;
-    starCanvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 });
+
+}
+

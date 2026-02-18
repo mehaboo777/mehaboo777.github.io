@@ -3,25 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Memories</title>
+<title>My Letter ❤️</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="memoriesPage">
+<body class="letterPage">
 
 <canvas id="bgHearts"></canvas>
 
 <a class="backBtn" href="home.html">← Back to Home</a>
 
-<h1>Our Precious Memories ❤️</h1>
+<div id="letterClosed" onclick="openRealLetter()">
+    <h2>❤️</h2>
+    <h2>Click to Open Your Letter</h2>
+</div>
 
-<div class="memoryGallery">
-
-<img src="pic1.jpg" class="memoryItem">
-<img src="pic2.jpg" class="memoryItem">
-<img src="pic3.jpg" class="memoryItem">
-<img src="pic4.jpg" class="memoryItem">
-
+<div id="realLetter">
+    <h1>My Dearest Love,</h1>
+    <p id="letterText"></p>
 </div>
 
 <script src="script.js"></script>

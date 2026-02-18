@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,61 +8,28 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-<canvas id="starCanvas"></canvas>
+<body class="introPage">
+<canvas id="bgHearts"></canvas>
 
-<!-- BIG INTRO ENVELOPE -->
 <div id="intro">
-    <div id="mainEnvelope" class="envelope" ontouchstart="openLetter()" onclick="openLetter()">
-
+    <div id="mainEnvelope" class="envelope" onclick="openLetter()">
         <div class="seal">❤️</div>
         <p class="tap">OPEN IT BUBUHHH</p>
     </div>
 </div>
 
-<!-- MAIN SITE -->
-<div id="mainSite">
-
-<!-- HERO -->
-<section class="hero">
-    
-<h1>Heyyh Mahhh Lovehhh 💖</h1>
-    <p>You are the best thing that ever happened to me.</p>
+<div id="introScene">
+    <h1 class="introTitle">Heyyh Mahhh Lovehhh 💖</h1>
+    <p class="introSub">You are the best thing that ever happened to me.</p>
     <h2 id="daysCounter"></h2>
-</section>
-
-<!-- MESSAGE -->
-<section class="loveSection">
     <p id="typing"></p>
-    <h3 id="loveMsg"></h3>
-</section>
-
-<!-- SMALL ENVELOPE (OPEN MY HEART) -->
-<section class="heartSection">
-    <div id = "loveHeart">
-        <div class = "heartCore">❤️</div>
-        <div id="holdText"> Hold my heart</div> 
-        <div id="progressBar"></div>
-    </div>
-
-</section>
-<canvas id="sparkCanvas"></canvas>
-
-<!-- PHOTOS REVEAL -->
-<div id="heartGallery"></div>
-
-<!-- SLIDE TO CONTINUE -->
-<div id="sliderBox">
-    <div id="sliderText">Slide to continue →</div>
-    <div id="slider">
-        <div id="sliderBtn"></div>
-    </div>
 </div>
 
 <audio id="music" loop>
-    <source src="song.mp3" type="audio/mp3">
+<source src="song.mp3" type="audio/mp3">
 </audio>
 
 <script src="script.js"></script>
+
 </body>
 </html>
