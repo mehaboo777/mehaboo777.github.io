@@ -203,6 +203,7 @@ animation:menuAppear 0.9s forwards;
 .menuCard:nth-child(4){
     grid-column: 2/3;
 }
+
 @keyframes menuAppear{
 from{
 opacity:0;
@@ -321,4 +322,302 @@ display:block;
 margin:20px;
 color:pink;
 text-decoration:none;
+}
+/* ===== LOVE STORY ROADMAP TIMELINE ===== */
+
+.timelinePage{
+background:#0b1022;
+color:white;
+min-height:100vh;
+padding-bottom:120px;
+}
+
+.timelineTitle{
+text-align:center;
+margin-top:70px;
+margin-bottom:60px;
+font-size:42px;
+}
+
+/* center vertical line */
+.timeline{
+position:relative;
+width:90%;
+max-width:900px;
+margin:auto;
+}
+
+.timeline::before{
+content:"";
+position:absolute;
+left:50%;
+top:0;
+width:4px;
+height:100%;
+background:linear-gradient(#ff6fa0,#ff4d88);
+transform:translateX(-50%);
+}
+
+/* rows */
+.timelineRow{
+display:flex;
+align-items:center;
+margin:60px 0;
+position:relative;
+}
+
+/* left side */
+.timelineRow.left{
+justify-content:flex-start;
+}
+
+/* right side */
+.timelineRow.right{
+justify-content:flex-end;
+}
+
+/* cards */
+.timelineCard{
+background:#1a1f3d;
+padding:22px 26px;
+border-radius:18px;
+width:40%;
+box-shadow:0 0 25px rgba(255,100,150,.25);
+transition:.35s;
+}
+
+.timelineCard:hover{
+transform:scale(1.05);
+box-shadow:0 0 40px rgba(255,100,150,.5);
+}
+
+.timelineCard h3{
+margin-top:0;
+margin-bottom:10px;
+color:#ff7eb3;
+}
+
+/* heart dot */
+.timelineDot{
+position:absolute;
+left:50%;
+transform:translate(-50%,-50%);
+top:50%;
+width:55px;
+height:55px;
+background:linear-gradient(135deg,#ff6fa0,#ff4d88);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+box-shadow:0 0 25px #ff4d88;
+}
+
+/* mobile responsive */
+@media(max-width:768px){
+
+.timeline::before{
+left:20px;
+}
+
+.timelineRow{
+flex-direction:column;
+align-items:flex-start;
+margin-left:40px;
+}
+
+.timelineCard{
+width:85%;
+margin-top:20px;
+}
+
+.timelineDot{
+left:20px;
+top:0;
+transform:translate(-50%,0);
+}
+}
+/* ===== TIMELINE ENDING SECTION ===== */
+
+.timelineEnding{
+margin-top:120px;
+padding:70px 25px;
+text-align:center;
+
+background:linear-gradient(135deg,#ff6fa0,#ff3f7f);
+color:white;
+
+border-radius:28px;
+width:85%;
+max-width:850px;
+margin-left:auto;
+margin-right:auto;
+
+box-shadow:0 0 40px rgba(255,80,130,.45);
+animation:fadeEnding 1.4s ease;
+}
+
+.endingHeart{
+font-size:40px;
+margin-bottom:18px;
+animation:beat 1.3s infinite;
+}
+
+.timelineEnding h2{
+font-size:34px;
+margin-bottom:15px;
+}
+
+.timelineEnding p{
+max-width:650px;
+margin:0 auto 22px;
+font-size:18px;
+line-height:1.6;
+opacity:.95;
+}
+
+.endingHearts{
+font-size:22px;
+letter-spacing:6px;
+opacity:.9;
+}
+
+/* heart beat animation */
+@keyframes beat{
+0%{transform:scale(1);}
+25%{transform:scale(1.15);}
+50%{transform:scale(1);}
+75%{transform:scale(1.15);}
+100%{transform:scale(1);}
+}
+
+@keyframes fadeEnding{
+from{
+opacity:0;
+transform:translateY(60px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+/* ===== LOVE STORY TIMELINE ===== */
+
+.timeline{
+position:relative;
+max-width:900px;
+margin:80px auto;
+padding:40px 0;
+}
+
+/* center line */
+.timeline::before{
+content:'';
+position:absolute;
+left:50%;
+top:0;
+width:4px;
+height:100%;
+background:#ff6fa0;
+transform:translateX(-50%);
+box-shadow:0 0 20px #ff6fa0;
+}
+
+/* timeline cards */
+.timelineItem{
+width:42%;
+background:#1c2140;
+padding:22px 26px;
+border-radius:18px;
+color:white;
+position:relative;
+margin:45px 0;
+box-shadow:0 0 25px rgba(255,110,160,.25);
+animation:fadeUp 1s ease forwards;
+opacity:0;
+}
+
+/* left side */
+.timelineItem.left{
+left:0;
+}
+
+/* right side */
+.timelineItem.right{
+left:58%;
+}
+
+/* glowing circle */
+.timelineItem::before{
+content:'❤';
+position:absolute;
+top:25px;
+width:46px;
+height:46px;
+background:#ff4d88;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
+box-shadow:0 0 20px #ff4d88,0 0 40px #ff4d88;
+}
+
+/* circle position */
+.timelineItem.left::before{
+right:-70px;
+}
+
+.timelineItem.right::before{
+left:-70px;
+}
+
+/* titles */
+.timelineItem h3{
+color:#ff9ac4;
+font-size:15px;
+margin-bottom:6px;
+}
+
+.timelineItem h2{
+margin:5px 0 10px;
+font-size:22px;
+color:#ff7eb3;
+}
+
+.timelineItem p{
+font-size:15px;
+line-height:1.5;
+opacity:.95;
+}
+
+/* animation */
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* mobile */
+@media(max-width:768px){
+
+.timeline::before{
+left:20px;
+}
+
+.timelineItem{
+width:calc(100% - 60px);
+left:40px !important;
+}
+
+.timelineItem::before{
+left:-32px !important;
+right:auto;
+}
 }
