@@ -11,55 +11,45 @@ const isIntroPage = document.getElementById("mainEnvelope") !== null;
 
 function openLetter(){
 
-if(!isIntroPage) return;
-
 const env = document.getElementById("mainEnvelope");
-env.classList.add("opening");
+const flash = document.getElementById("openFlash");
 
+env.classList.add("opening");
+flash.classList.add("flash");
+
+/* after envelope opens */
 setTimeout(()=>{
 
     // hide envelope
     document.getElementById("intro").style.display="none";
 
-    // show intro scene properly
+    // SHOW INTRO SCENE
     const scene = document.getElementById("introScene");
     scene.classList.add("active");
 
-    // start hearts now
+    // start hearts
     initHearts();
 
-    const title = document.querySelector(".introTitle");
-    const sub = document.querySelector(".introSub");
-    const days = document.getElementById("daysCounter");
-    const typing = document.getElementById("typing");
+    // start intro animations
+    setTimeout(()=> document.querySelector(".introTitle").classList.add("showIntro"),400);
+    setTimeout(()=> document.querySelector(".introSub").classList.add("showIntro"),1000);
 
-    /* ---- CINEMATIC TEXT SEQUENCE ---- */
+    setTimeout(()=>{
+        showDays();
+        document.getElementById("daysCounter").classList.add("showIntro");
+    },1700);
 
-    /* wait for card to finish appearing */
-setTimeout(()=> title.classList.add("showIntro"), 400);
-setTimeout(()=> sub.classList.add("showIntro"), 1100);
+    setTimeout(()=>{
+        document.getElementById("typing").classList.add("showIntro");
+        typeIntro();
+    },2600);
 
-setTimeout(()=>{
-    showDays();
-    days.classList.add("showIntro");
-},1900);
-
-setTimeout(()=>{
-    typing.classList.add("showIntro");
-    typeIntro();
-},2800);
-
-
-    // music
-    const music = document.getElementById("music");
-    if(music){
-        music.volume = 0.05;
-        music.play().catch(()=>{});
-    }
-
-},1200);
+},900);
 }
 
+
+
+ 
 
 /* =========================
    DAYS COUNTER
@@ -128,27 +118,19 @@ let letterStarted = false;
 
 function openRealLetter(){
 
-if(letterStarted) return;   // prevents double typing
-letterStarted = true;
-
-document.getElementById("letterClosed").style.display="none";
-
+const closed = document.getElementById("letterClosed");
 const letter = document.getElementById("realLetter");
+
+closed.style.transform="scale(.7)";
+closed.style.opacity="0";
+
+setTimeout(()=>{
+closed.style.display="none";
 letter.style.display="block";
-
 startLetterTyping();
+},400);
 }
 
-function typeLetter(){
-const el=document.getElementById("letterText");
-if(!el) return;
-
-if(li<letterMessage.length){
-el.innerHTML+=letterMessage.charAt(li);
-li++;
-setTimeout(typeLetter,30);
-}
-}
 
 
 /* =========================
@@ -323,5 +305,46 @@ item.classList.add("show");
 }, index*500);
 });
 
+});
+/* ===== MEMORY CLICK VIEWER ===== */
+
+const viewer = document.getElementById("memoryViewer");
+const viewerImg = document.getElementById("memoryImage");
+const viewerText = document.getElementById("memoryText");
+const closeBtn = document.getElementById("closeMemory");
+
+/* custom messages for each photo */
+const memoryMessages = [
+"That day… I realized my happiness started with you ❤️",
+"I still remember how your hand felt in mine 🤍",
+"I didn’t say it that day… but I knew I loved you already",
+"Every journey was beautiful because you were beside me 🚍"
+];
+
+/* click each polaroid */
+document.querySelectorAll(".polaroid").forEach((photo, index)=>{
+photo.addEventListener("click", ()=>{
+const img = photo.querySelector("img");
+
+viewerImg.src = img.src;
+viewerText.innerText = memoryMessages[index];
+
+viewer.classList.add("show");
+document.body.style.overflow="hidden";
+});
+});
+
+/* close */
+closeBtn.addEventListener("click", ()=>{
+viewer.classList.remove("show");
+document.body.style.overflow="auto";
+});
+
+/* tap outside closes */
+viewer.addEventListener("click",(e)=>{
+if(e.target === viewer){
+viewer.classList.remove("show");
+document.body.style.overflow="auto";
+}
 });
 

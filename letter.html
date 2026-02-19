@@ -3,33 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Letter ❤️</title>
+<title>My Love Letter ❤️</title>
+
 <link rel="stylesheet" href="style.css">
+
+<!-- Romantic Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 </head>
 
 <body class="letterPage">
+
+<!-- Floating Home Button -->
 <a class="homeFloatBtn" href="home.html">🏠</a>
 
+<!-- Floating Hearts Background -->
 <canvas id="bgHearts"></canvas>
 
-<a class="backBtn" href="home.html">← Back to Home</a>
 
-<div id="letterClosed" onclick="openRealLetter()">
-    <h2>My Dearest Love</h2>
-    <p>Tap to open 💌</p>
+<!-- ================= CLOSED LETTER CARD ================= -->
+
+<div id="letterClosed" class="letterClosed" onclick="openRealLetter()">
+
+    <div class="letterIcon">❤️</div>
+
+    <h2>Click to Open Your Letter</h2>
+
+    <p class="sparkle">✨</p>
+
 </div>
 
-<div id="realLetter">
 
-    <h2 class="letterTitle">My Dearest Love ❤️</h2>
 
-    <p id="letterText"></p>
+<!-- ================= REAL LETTER ================= -->
 
-    <div class="letterSign">— Yours forever 💞</div>
+<div id="realLetter" class="realLetter">
+
+    <div class="letterPaper">
+
+        <h1 class="letterTitle">My Dearest Love,</h1>
+
+        <!-- TYPING TEXT APPEARS HERE -->
+        <div id="letterText"></div>
+
+        <div class="signature">
+            Forever Yours,<br>
+            ❤️ ❤️ ❤️ ❤️ ❤️
+        </div>
+
+    </div>
 
 </div>
 
 
 <script src="script.js"></script>
+
 </body>
 </html>
