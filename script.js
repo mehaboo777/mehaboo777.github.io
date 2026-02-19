@@ -334,10 +334,12 @@ const viewerText = document.getElementById("memoryText");
 const closeBtn = document.getElementById("closeMemory");
 
 const memoryMessages = [
-"That day… I realized my happiness started with you ❤️",
+"Youh arehh mahh everythingh maahh princess ❤️",
 "I still remember how your hand felt in mine 🤍",
-"I didn’t say it that day… but I knew I loved you already",
-"Every journey was beautiful because you were beside me 🚍"
+"you arehh so precious to meehh babeehh",
+"youhh really make me blushhh everydayhh",
+"I want to make a thousand more memories with you, my love.",
+"You are my forever and always. ❤️"
 ];
 
 document.querySelectorAll(".polaroid").forEach((photo, index)=>{

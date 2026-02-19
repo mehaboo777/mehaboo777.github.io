@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inside My Heart ❤️</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="memoriesPage">
+
+<a class="homeFloatBtn" href="home.html">🏠</a>
+
+<h1 class="memoryTitle">What's Inside My Heart ❤️</h1>
+
+<div class="memoryWall">
+
+    <div class="polaroid">
+        <img src="images/h1.jpeg">
+        <p>The girl who changed my life</p>
+    </div>
+
+    <div class="polaroid">
+        <img src="images/h2.jpeg">
+        <p>My favorite smile</p>
+    </div>
+
+    <div class="polaroid">
+        <img src="images/h3.jpeg">
+        <p>My peace</p>
+    </div>
+
+    <div class="polaroid">
+        <img src="images/h4.jpeg">
+        <p>My home ❤️</p>
+    </div>
+
+    <div class="polaroid">
+        <img src="images/h5.jpeg">
+        <p>Forever you</p>
+    </div>
+
+</div>
+
+<script>
+/* scroll appear animation */
+const photos = document.querySelectorAll(".polaroid");
+
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+},{threshold:0.2});
+
+photos.forEach(p=>observer.observe(p));
+</script>
+
+</body>
+</html>

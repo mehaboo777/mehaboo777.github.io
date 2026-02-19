@@ -216,13 +216,12 @@ opacity:0;
 .menuCard:nth-child(3){animation-delay:.9s;}
 .menuCard:nth-child(4){
 animation-delay:1.2s;
-grid-column:2;
-grid-row: 2;
 }
 .menuCard:nth-child(5){
 animation-delay:1.8s;
-grid-column:2;
-grid-row: 3;
+}
+.menuCard:nth-child(6){
+animation-delay:2.1s;
 }
 
 .menuCard:hover{
