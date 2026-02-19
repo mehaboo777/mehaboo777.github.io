@@ -4,58 +4,61 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Love Letter ❤️</title>
-
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
 
-<!-- Romantic Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 </head>
 
 <body class="letterPage">
 
-<!-- Floating Home Button -->
 <a class="homeFloatBtn" href="home.html">🏠</a>
 
-<!-- Floating Hearts Background -->
 <canvas id="bgHearts"></canvas>
 
-
-<!-- ================= CLOSED LETTER CARD ================= -->
-
-<div id="letterClosed" class="letterClosed" onclick="openRealLetter()">
-
+<!-- CLOSED LETTER -->
+<div id="letterClosed" class="letterClosed">
     <div class="letterIcon">❤️</div>
-
     <h2>Click to Open Your Letter</h2>
-
     <p class="sparkle">✨</p>
-
 </div>
 
-
-
-<!-- ================= REAL LETTER ================= -->
-
-<div id="realLetter" class="realLetter">
+<!-- LETTER PAPER -->
+<div class="realLetter" id="realLetter">
 
     <div class="letterPaper">
 
         <h1 class="letterTitle">My Dearest Love,</h1>
 
-        <!-- TYPING TEXT APPEARS HERE -->
-        <div id="letterText"></div>
+        <div class="letterContent">
 
-        <div class="signature">
-            Forever Yours,<br>
-            ❤️ ❤️ ❤️ ❤️ ❤️
+            <p>Every moment with you feels like a beautiful dream I never want to wake from. You are the light that brightens my darkest days and the warmth that comforts my soul.</p>
+
+            <p>From the very first moment I met you, I knew you were special. Your smile, your laugh, the way you see the world — everything about you captivates me. You turn ordinary moments into unforgettable memories.</p>
+
+            <p>I cherish every conversation we share, every laugh we exchange, and every memory we create together. You inspire me to be better, to dream bigger, and to love deeper than I ever imagined.</p>
+
+            <p>No matter what the future holds, I want you to know that you are my forever. My heart’s home, my safe place, and my greatest happiness.</p>
+
+        </div>
+
+        <div class="letterSign">
+            With all my love, now and forever,
+            <div class="signName">Forever Yours ❤</div>
+        </div>
+
+        <div class="heartRow">
+            <span class="heart"></span>
+            <span class="heart"></span>
+            <span class="heart"></span>
+            <span class="heart"></span>
+            <span class="heart"></span>
         </div>
 
     </div>
-
 </div>
 
-
-<script src="script.js"></script>
+<script src="letter.js"></script>
 
 </body>
 </html>
+

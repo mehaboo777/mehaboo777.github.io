@@ -14,6 +14,8 @@ function openLetter(){
 const env = document.getElementById("mainEnvelope");
 const flash = document.getElementById("openFlash");
 
+if(!env || !flash) return;
+
 env.classList.add("opening");
 flash.classList.add("flash");
 
@@ -96,7 +98,9 @@ if(typingStarted) return;
 typingStarted=true;
 
 const t=document.getElementById("typing");
+if(!t) return;
 t.innerHTML="";
+
 i=0;
 
 function typing(){
@@ -118,18 +122,28 @@ let letterStarted = false;
 
 function openRealLetter(){
 
-const closed = document.getElementById("letterClosed");
+const card = document.getElementById("letterClosed");
 const letter = document.getElementById("realLetter");
 
-closed.style.transform="scale(.7)";
-closed.style.opacity="0";
+if(!card || !letter) return;
 
+/* hide card */
+card.style.display = "none";
+
+/* show paper */
+letter.style.display = "block";
+
+/* FORCE browser to render it */
+letter.offsetHeight;
+
+/* NOW start typing */
 setTimeout(()=>{
-closed.style.display="none";
-letter.style.display="block";
 startLetterTyping();
-},400);
+},900);
+
 }
+
+
 
 
 
@@ -201,7 +215,8 @@ function draw(){
         ctx.globalAlpha = h.opacity;
         ctx.fillStyle = "#ff6fa0";
         ctx.font = h.size+"px serif";
-        ctx.fillText("❤",h.x,h.y);
+        ctx.fillText("❤️",h.x,h.y);
+
     });
 
     requestAnimationFrame(draw);
@@ -275,7 +290,7 @@ let taps=0;
 document.body.addEventListener("click",()=>{
 taps++;
 if(taps==7){
-alert("You found my secret… I love you more than I show ❤️");
+alert("shooohh You found my secret msgg bubuuhh… I loveh youh more than I show babeehh and i promise ill be with myhh girl in everyyhh situation❤️");
 }
 });
 /* ===== MEMORY SCROLL REVEAL ===== */
@@ -308,12 +323,16 @@ item.classList.add("show");
 });
 /* ===== MEMORY CLICK VIEWER ===== */
 
+/* ===== MEMORY VIEWER (SAFE) ===== */
+
 const viewer = document.getElementById("memoryViewer");
+
+if(viewer){
+
 const viewerImg = document.getElementById("memoryImage");
 const viewerText = document.getElementById("memoryText");
 const closeBtn = document.getElementById("closeMemory");
 
-/* custom messages for each photo */
 const memoryMessages = [
 "That day… I realized my happiness started with you ❤️",
 "I still remember how your hand felt in mine 🤍",
@@ -321,7 +340,6 @@ const memoryMessages = [
 "Every journey was beautiful because you were beside me 🚍"
 ];
 
-/* click each polaroid */
 document.querySelectorAll(".polaroid").forEach((photo, index)=>{
 photo.addEventListener("click", ()=>{
 const img = photo.querySelector("img");
@@ -334,17 +352,28 @@ document.body.style.overflow="hidden";
 });
 });
 
-/* close */
 closeBtn.addEventListener("click", ()=>{
 viewer.classList.remove("show");
 document.body.style.overflow="auto";
 });
 
-/* tap outside closes */
 viewer.addEventListener("click",(e)=>{
 if(e.target === viewer){
 viewer.classList.remove("show");
 document.body.style.overflow="auto";
 }
+});
+
+}
+
+/* AUTO ATTACH LETTER CLICK */
+document.addEventListener("DOMContentLoaded", () => {
+
+const card = document.getElementById("letterClosed");
+
+if(card){
+card.addEventListener("click", openRealLetter);
+}
+
 });
 
