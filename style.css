@@ -1943,163 +1943,176 @@ transform:scale(1.1);
 opacity:1;
 pointer-events:auto;
 }
-/* =====================================================
-   📱📱📱 MOBILE RESPONSIVE FIX (PHONES)
-   ===================================================== */
+/* ================= MOBILE FIX ================= */
+
 @media (max-width: 768px){
 
-/* ---------- GLOBAL ---------- */
+/* general text */
 body{
-    overflow-x:hidden;
-}
-
-/* ---------- MENU PAGE ---------- */
-.menuHeader h1{
-    font-size:28px;
-}
-
-.menuHeader p{
     font-size:14px;
-    padding:0 18px;
 }
 
+/* MENU CARDS */
 .menuGrid{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr !important;
     gap:22px;
-    padding-bottom:70px;
+    padding:20px;
 }
 
 .menuCard{
-    padding:26px 18px;
-    border-radius:20px;
+    width:100%;
+    height:auto;
+    padding:28px 18px;
+    border-radius:18px;
 }
 
-.cardIcon{font-size:28px;}
-.cardTitle{font-size:20px;}
-.cardDesc{font-size:14px;}
-
-/* remove rotated proposal card on phone */
-.menuCard.specialCard .innerTilt{
-    transform:none !important;
+.cardTitle{
+    font-size:20px;
 }
 
-/* ---------- LETTER PAGE ---------- */
-.letterPaper{
-    margin:60px 12px;
-    padding:40px 18px 55px 18px;
-    background-size:100% 28px;
+.cardDesc{
+    font-size:14px;
 }
 
-.letterTitle{
-    font-size:28px;
-    margin-left:18px;
-}
 
-.letterContent p{
-    font-size:18px;
-    line-height:30px;
-    padding-left:18px;
-    padding-right:14px;
-}
-
-.signName{
-    font-size:30px;
-}
-
-/* ---------- MEMORIES PAGE ---------- */
-.memoryTitle{
-    font-size:24px;
-    padding:0 15px;
-}
-
-.polaroid{
-    width:85%;
-}
-
-.polaroid img{
-    height:220px;
-}
-
-/* ---------- TIMELINE ---------- */
-.timeline{
-    margin-top:40px;
-}
-
-.timelineCard{
-    width:calc(100% - 60px);
-    left:40px !important;
-}
-
-.timelineDot{
-    left:18px;
-}
-
-/* ---------- PROPOSAL PAGE ---------- */
+/* PROPOSAL BOX */
 .proposalBox{
     width:92%;
-    margin:90px auto;
-    padding:35px 18px 40px;
+    margin:80px auto;
+    padding:28px 18px;
     border-radius:22px;
 }
 
 .proposalTitle{
-    font-size:22px;
+    font-size:24px;
 }
 
 .proposalSub{
-    font-size:14px;
+    font-size:15px;
 }
 
 .bigQuestion{
     font-size:20px;
-    margin-top:18px;
 }
 
+/* YES BUTTONS */
 .btns{
     flex-direction:column;
-    gap:12px;
+    gap:14px;
 }
 
 .yesBtn{
-    width:80%;
-    font-size:16px;
-    padding:14px 0;
+    width:100%;
+    font-size:18px;
+    padding:14px;
 }
 
 /* NO BUTTON */
 #noBtn{
+    position:fixed;
     font-size:14px;
-    padding:10px 18px;
+    padding:10px 16px;
+    right:20px;
+    bottom:90px;
 }
 
-/* YES REVEAL SCREEN */
-.yesRevealContent{
-    padding:35px 18px;
+
+/* LOVE LETTER */
+.letterPaper{
+    margin:70px 12px;
+    padding:40px 18px;
 }
 
-.yesTitle{
-    font-size:28px;
+.letterTitle{
+    font-size:30px;
+    margin-left:30px;
 }
 
-.yesSub{
-    font-size:18px;
+.letterContent p{
+    font-size:17px;
+    padding-left:30px;
+    padding-right:20px;
+    line-height:28px;
 }
 
-.yesMessage{
-    font-size:16px;
-    line-height:1.6;
+/* TIMELINE */
+.timeline::before{
+    left:20px;
 }
 
-/* floating home button */
+.timelineCard{
+    width:calc(100% - 70px);
+    left:50px !important;
+}
+
+.timelineDot{
+    left:20px;
+}
+
+/* POLAROID */
+.polaroid{
+    width:90%;
+}
+
+.polaroid img{
+    height:auto;
+}
+
+/* HOME FLOAT BUTTON */
 .homeFloatBtn{
-    width:48px;
-    height:48px;
-    font-size:20px;
-    bottom:16px;
-    right:14px;
+    width:50px;
+    height:50px;
+    font-size:22px;
+    bottom:18px;
+    right:18px;
 }
 
 }
+/* ===== MOBILE TIMELINE FIX ===== */
+
+@media (max-width:768px){
+
+.timeline{
+    position:relative;
+    padding-left:50px;
+}
+
+/* center vertical line moves to left */
+.timeline::before{
+    left:25px;
+}
+
+/* heart dots */
+.timelineDot{
+    left:25px;
+    transform:translateX(-50%);
+}
+
+/* ALL CARDS become full width */
+.timelineCard{
+    width:calc(100% - 70px);
+    left:45px !important;
+    right:auto !important;
+    margin-bottom:40px;
+}
+
+/* remove arrows */
+.timelineCard::after{
+    display:none;
+}
+
+/* better text sizing */
+.timelineCard h3{
+    font-size:20px;
+}
+
+.timelineCard p{
+    font-size:15px;
+    line-height:24px;
+}
+
+}
+
 
 
 
