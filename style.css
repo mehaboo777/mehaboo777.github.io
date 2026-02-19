@@ -2007,14 +2007,28 @@ body{
     padding:14px;
 }
 
-/* NO BUTTON */
 #noBtn{
     position:fixed;
-    font-size:14px;
-    padding:10px 16px;
-    right:20px;
-    bottom:90px;
+    left:50%;
+    top:85%;
+    transform:translate(-50%,-50%);
+    padding:10px 18px;
+    border-radius:16px;
+    border:none;
+    background:#fff;
+    color:#ff4d88;
+    font-weight:600;
+    font-size:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+    z-index:9999;
+    opacity:0;
+    transition:opacity .5s ease;
 }
+
+#noBtn.showNo{
+    opacity:1;
+}
+
 
 
 /* LOVE LETTER */
@@ -2248,7 +2262,232 @@ body{
     font-size:14px;
 }
 }
+@media (max-width:768px){
 
+.menuHeader h1{
+    font-size:30px;
+}
+
+.menuHeader p{
+    font-size:14px;
+    padding:0 12px;
+}
+
+.menuGrid{
+    grid-template-columns:1fr;
+    gap:18px;
+    padding:0 18px 60px;
+}
+
+.menuCard{
+    padding:26px 16px;
+    border-radius:18px;
+}
+
+.cardTitle{
+    font-size:20px;
+}
+
+.cardDesc{
+    font-size:14px;
+}
+}
+
+/* =========================================================
+   FINAL MOBILE OVERRIDE (DO NOT EDIT ABOVE CSS)
+   This block fixes centering, card size and runaway button
+   ========================================================= */
+
+@media (max-width:768px){
+
+/* ---------- GLOBAL ---------- */
+
+html,body{
+    width:100%;
+    overflow-x:hidden;
+}
+
+/* ---------- MENU PAGE ---------- */
+
+.menuHeader{
+    margin-top:70px;
+    margin-bottom:40px;
+}
+
+.menuHeader h1{
+    font-size:28px;
+    padding:0 16px;
+}
+
+.menuHeader p{
+    font-size:14px;
+    padding:0 18px;
+}
+
+/* center cards properly */
+.menuGrid{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+    padding:0 16px 80px;
+}
+
+/* card sizing */
+.menuCard{
+    width:100%;
+    max-width:360px;
+    padding:26px 18px;
+    border-radius:20px;
+    margin:0 auto;
+}
+
+.cardTitle{
+    font-size:20px;
+}
+
+.cardDesc{
+    font-size:14px;
+}
+
+
+/* ---------- PROPOSAL PAGE ---------- */
+
+/* real vertical centering */
+.proposalPage{
+    min-height:100dvh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+/* proposal box */
+.proposalBox{
+    width:100%;
+    max-width:360px;
+    margin:0 !important;
+    padding:28px 18px;
+    border-radius:22px;
+}
+
+/* text sizes */
+.proposalTitle{
+    font-size:24px;
+}
+
+.proposalSub{
+    font-size:14px;
+}
+
+.bigQuestion{
+    font-size:20px;
+    line-height:1.4;
+}
+
+/* buttons stack */
+.btns{
+    flex-direction:column;
+    gap:14px;
+}
+
+.yesBtn{
+    width:100%;
+    padding:14px 0;
+    font-size:17px;
+}
+
+
+/* ---------- RUNAWAY NO BUTTON (REAL FIX) ---------- */
+
+#noBtn{
+    position:fixed !important;
+    left:50% !important;
+    top:85% !important;
+    transform:translate(-50%,-50%);
+    padding:10px 18px;
+    font-size:15px;
+    border-radius:16px;
+    opacity:0;
+    pointer-events:none;
+    z-index:9999;
+    transition:opacity .4s ease;
+}
+
+#noBtn.showNo{
+    opacity:1;
+    pointer-events:auto;
+}
+
+
+/* ---------- LOVE LETTER ---------- */
+
+.letterPaper{
+    width:94%;
+    margin:80px auto;
+    padding:40px 20px;
+}
+
+.letterTitle{
+    font-size:30px;
+    margin-left:0;
+    text-align:center;
+}
+
+.letterContent p{
+    font-size:18px;
+    line-height:30px;
+    padding:0 18px;
+}
+
+
+/* ---------- TIMELINE ---------- */
+
+.timeline{
+    padding-left:55px;
+}
+
+.timeline::before{
+    left:24px;
+}
+
+.timelineDot{
+    left:24px;
+}
+
+.timelineCard{
+    width:calc(100% - 70px);
+    left:50px !important;
+    padding:18px;
+}
+
+.timelineCard::after{
+    display:none;
+}
+
+
+/* ---------- POLAROIDS ---------- */
+
+.polaroid{
+    width:92%;
+}
+
+.polaroid img{
+    height:auto;
+}
+
+
+/* ---------- FLOAT HOME BUTTON ---------- */
+
+.homeFloatBtn{
+    width:50px;
+    height:50px;
+    font-size:22px;
+    right:16px;
+    bottom:16px;
+}
+
+}
 
 
 
