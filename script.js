@@ -88,7 +88,7 @@ animate();
    INTRO TYPING TEXT
    ========================= */
 
-const text="Every day with you is my favorite day ❤️";
+const text="You are mahh everythingh babeehhhh❤️";
 let i=0;
 let typingStarted=false;
 
