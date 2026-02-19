@@ -289,4 +289,39 @@ else{
 
 type();
 }
+let taps=0;
+document.body.addEventListener("click",()=>{
+taps++;
+if(taps==7){
+alert("You found my secret… I love you more than I show ❤️");
+}
+});
+/* ===== MEMORY SCROLL REVEAL ===== */
+
+window.addEventListener("scroll", ()=>{
+
+const items = document.querySelectorAll(".polaroid");
+
+items.forEach(item=>{
+const rect = item.getBoundingClientRect();
+
+if(rect.top < window.innerHeight - 80){
+item.classList.add("show");
+}
+});
+
+});
+/* ===== MEMORY PAGE AUTO APPEAR FIX ===== */
+
+window.addEventListener("load", ()=>{
+
+const items = document.querySelectorAll(".polaroid");
+
+items.forEach((item,index)=>{
+setTimeout(()=>{
+item.classList.add("show");
+}, index*500);
+});
+
+});
 
