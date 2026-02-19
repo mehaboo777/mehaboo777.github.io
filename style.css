@@ -2112,6 +2112,142 @@ body{
 }
 
 }
+/* ================= MOBILE FIX (PHONES) ================= */
+@media (max-width: 768px){
+
+body{
+    overflow-x:hidden;
+}
+
+/* page title */
+.menuHeader h1{
+    font-size:28px;
+    padding:0 18px;
+}
+
+.menuHeader p{
+    font-size:14px;
+    padding:0 20px;
+}
+}
+@media (max-width:768px){
+
+.menuGrid{
+    grid-template-columns:1fr !important;
+    gap:20px;
+    padding:0 16px 60px;
+}
+
+/* cards */
+.menuCard{
+    width:100%;
+    height:auto;
+    padding:28px 18px;
+    border-radius:20px;
+}
+
+/* remove forced positions */
+.menuCard:nth-child(4),
+.menuCard:nth-child(5){
+    grid-column:auto !important;
+    grid-row:auto !important;
+}
+
+.cardTitle{
+    font-size:22px;
+}
+
+.cardDesc{
+    font-size:14px;
+}
+}
+@media (max-width:768px){
+
+.proposalBox{
+    width:92%;
+    margin:90px auto;
+    padding:30px 20px;
+    border-radius:22px;
+}
+
+/* title */
+.proposalTitle{
+    font-size:22px;
+}
+
+/* paragraph */
+.proposalSub{
+    font-size:14px;
+}
+
+/* question */
+.bigQuestion{
+    font-size:20px;
+    line-height:1.4;
+}
+
+/* YES buttons */
+.btns{
+    flex-direction:column;
+    gap:14px;
+}
+
+.yesBtn{
+    width:100%;
+    font-size:16px;
+    padding:14px 0;
+}
+
+/* running NO button */
+#noBtn{
+    transform:scale(.9);
+}
+}
+@media (max-width:768px){
+
+.letterPaper{
+    width:94%;
+    padding:40px 20px;
+    margin:80px auto;
+}
+
+.letterTitle{
+    font-size:30px;
+    margin-left:0;
+    text-align:center;
+}
+
+.letterContent p{
+    font-size:18px;
+    line-height:30px;
+    padding-left:20px;
+    padding-right:20px;
+}
+}
+@media (max-width:768px){
+
+.timeline::before{
+    left:22px;
+}
+
+.timelineCard{
+    width:calc(100% - 70px);
+    left:55px !important;
+    padding:18px;
+}
+
+.timelineDot{
+    left:22px;
+}
+
+.timelineCard h2{
+    font-size:20px;
+}
+
+.timelineCard p{
+    font-size:14px;
+}
+}
 
 
 
