@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Memories ❤️</title>
 
     <link rel="stylesheet" href="style.css">
@@ -12,52 +13,76 @@
 
 <body class="memoriesPage">
 
-    <canvas id="bgHearts"></canvas>
+    <!-- HEADER -->
 
-    <!-- Header -->
     <section class="memories-header">
-        <h1 class="memories-title">Our Precious Memories ❤️</h1>
+
+        <h1 class="memories-title">
+            For My Girl ❤️
+        </h1>
+
         <p class="memories-subtitle">
-            Every picture holds a piece of my heart
+            A SPECIAL CORNER JUST FOR YOUR BEAUTIFUL MOMENTS
         </p>
+
     </section>
 
-    <!-- Gallery -->
+    <!-- ADD BUTTON -->
+
+    <button id="openUpload" class="add-photo-btn">
+        📷 Add Photo
+    </button>
+
+    <!-- GALLERY -->
+
     <section class="polaroid-gallery">
 
-        <div class="polaroid" data-index="0">
-            <img src="m1.jpeg" alt="Memory 1">
-            <p class="polaroid-caption">The way you look at me ✨</p>
+        <div class="polaroid">
+            <img src="m1.jpeg">
+            <p class="polaroid-caption">
+                The way you look at me ✨
+            </p>
         </div>
 
-        <div class="polaroid" data-index="1">
-            <img src="m2.jpeg" alt="Memory 2">
-            <p class="polaroid-caption">Holding your hand 🤍</p>
+        <div class="polaroid">
+            <img src="m2.jpeg">
+            <p class="polaroid-caption">
+                Holding your hand 🤍
+            </p>
         </div>
 
-        <div class="polaroid" data-index="2">
-            <img src="m3.jpeg" alt="Memory 3">
-            <p class="polaroid-caption">The day I realized it's you ❤️</p>
+        <div class="polaroid">
+            <img src="m3.jpeg">
+            <p class="polaroid-caption">
+                The day I realized it's you ❤️
+            </p>
         </div>
 
-        <div class="polaroid" data-index="3">
-            <img src="m4.jpeg" alt="Memory 4">
-            <p class="polaroid-caption">Forever moments 💫</p>
+        <div class="polaroid">
+            <img src="m4.jpeg">
+            <p class="polaroid-caption">
+                Forever moments 💫
+            </p>
         </div>
 
-        <div class="polaroid" data-index="4">
-            <img src="m5.jpeg" alt="Memory 5">
-            <p class="polaroid-caption">My beautiful girl 🌸</p>
+        <div class="polaroid">
+            <img src="m5.jpeg">
+            <p class="polaroid-caption">
+                My beautiful girl 🌸
+            </p>
         </div>
 
-        <div class="polaroid" data-index="5">
-            <img src="m6.jpeg" alt="Memory 6">
-            <p class="polaroid-caption">You are my everything 💖</p>
+        <div class="polaroid">
+            <img src="m6.jpeg">
+            <p class="polaroid-caption">
+                You are my everything 💖
+            </p>
         </div>
 
     </section>
 
-    <!-- Viewer -->
+    <!-- VIEWER -->
+
     <div id="memoryViewer" class="memory-viewer">
 
         <button id="closeMemory" class="viewer-close">
@@ -65,43 +90,51 @@
         </button>
 
         <div class="viewer-content">
-            <img id="memoryImage" src="" alt="Memory">
+
+            <img id="memoryImage">
+
             <p id="memoryText" class="viewer-message"></p>
+
         </div>
 
     </div>
-<!-- ADD MEMORY MODAL -->
 
-<div id="uploadModal" class="upload-modal">
+    <!-- UPLOAD MODAL -->
 
-    <div class="upload-box">
+    <div id="uploadModal" class="upload-modal">
 
-        <button id="closeUpload" class="close-upload">✕</button>
+        <div class="upload-box">
 
-        <h2>Add a New Memory ❤️</h2>
+            <button id="closeUpload" class="close-upload">
+                ✕
+            </button>
 
-        <input type="file" id="photoInput" accept="image/*">
+            <h2>Add a New Memory ❤️</h2>
 
-        <input
-            type="text"
-            id="captionInput"
-            placeholder="Write something sweet..."
-        >
+            <input type="file" id="photoInput" accept="image/*">
 
-        <button id="saveMemoryBtn">
-            Save Memory
-        </button>
+            <input
+                type="text"
+                id="captionInput"
+                placeholder="Write something sweet..."
+            >
+
+            <button id="saveMemoryBtn">
+                Save Memory
+            </button>
+
+        </div>
 
     </div>
 
-</div>
-<button id="openUpload" class="add-photo-btn">
-    📷 Add Photo
-</button>
-    <!-- Home Button -->
-    <a href="home.html" class="float-btn">🏠</a>
+    <!-- HOME BUTTON -->
+
+    <a href="home.html" class="float-btn">
+        🏠
+    </a>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>

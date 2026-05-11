@@ -293,58 +293,164 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".polaroid, .heart-photo").forEach(el => {
     observer.observe(el);
 });
-const openUpload = document.getElementById("openUpload");
-const uploadModal = document.getElementById("uploadModal");
-const closeUpload = document.getElementById("closeUpload");
+/* ============================================
+   MEMORY PAGE
+============================================ */
 
-const photoInput = document.getElementById("photoInput");
-const captionInput = document.getElementById("captionInput");
-const saveMemoryBtn = document.getElementById("saveMemoryBtn");
+document.addEventListener("DOMContentLoaded", () => {
 
-const gallery = document.querySelector(".polaroid-gallery");
+    const viewer = document.getElementById("memoryViewer");
 
-/* OPEN MODAL */
+    /* STOP IF NOT MEMORY PAGE */
 
-openUpload.onclick = () => {
-    uploadModal.classList.add("show");
-};
+    if (!viewer) return;
 
-/* CLOSE MODAL */
+    const viewerImg =
+        document.getElementById("memoryImage");
 
-closeUpload.onclick = () => {
-    uploadModal.classList.remove("show");
-};
+    const viewerText =
+        document.getElementById("memoryText");
 
-/* SAVE MEMORY */
+    const closeMemory =
+        document.getElementById("closeMemory");
 
-saveMemoryBtn.onclick = () => {
+    const gallery =
+        document.querySelector(".polaroid-gallery");
 
-    const file = photoInput.files[0];
+    /* =========================================
+       OPEN VIEWER
+    ========================================= */
 
-    if(!file) return;
+    function attachViewer(card){
 
-    const reader = new FileReader();
+        card.addEventListener("click", () => {
 
-    reader.onload = function(e){
+            const img =
+                card.querySelector("img");
 
-        const div = document.createElement("div");
+            const caption =
+                card.querySelector(".polaroid-caption");
 
-        div.className = "polaroid";
+            viewerImg.src = img.src;
 
-        div.innerHTML = `
-            <img src="${e.target.result}">
-            <p class="polaroid-caption">
-                ${captionInput.value}
-            </p>
-        `;
+            viewerText.innerText =
+                caption ? caption.innerText : "Our Memory ❤️";
 
-        gallery.prepend(div);
+            viewer.classList.add("show");
+
+            document.body.style.overflow = "hidden";
+        });
+    }
+
+    /* EXISTING IMAGES */
+
+    document.querySelectorAll(".polaroid")
+        .forEach((card) => {
+
+            attachViewer(card);
+        });
+
+    /* =========================================
+       CLOSE VIEWER
+    ========================================= */
+
+    closeMemory.addEventListener("click", () => {
+
+        viewer.classList.remove("show");
+
+        document.body.style.overflow = "auto";
+    });
+
+    viewer.addEventListener("click", (e) => {
+
+        if(e.target === viewer){
+
+            viewer.classList.remove("show");
+
+            document.body.style.overflow = "auto";
+        }
+    });
+
+    /* =========================================
+       UPLOAD MODAL
+    ========================================= */
+
+    const openUpload =
+        document.getElementById("openUpload");
+
+    const uploadModal =
+        document.getElementById("uploadModal");
+
+    const closeUpload =
+        document.getElementById("closeUpload");
+
+    const photoInput =
+        document.getElementById("photoInput");
+
+    const captionInput =
+        document.getElementById("captionInput");
+
+    const saveMemoryBtn =
+        document.getElementById("saveMemoryBtn");
+
+    /* OPEN MODAL */
+
+    openUpload.addEventListener("click", () => {
+
+        uploadModal.classList.add("show");
+    });
+
+    /* CLOSE MODAL */
+
+    closeUpload.addEventListener("click", () => {
 
         uploadModal.classList.remove("show");
+    });
 
-        photoInput.value = "";
-        captionInput.value = "";
-    };
+    /* =========================================
+       SAVE MEMORY
+    ========================================= */
 
-    reader.readAsDataURL(file);
-};
+    saveMemoryBtn.addEventListener("click", () => {
+
+        const file = photoInput.files[0];
+
+        if(!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function(e){
+
+            const div =
+                document.createElement("div");
+
+            div.className = "polaroid";
+
+            div.innerHTML = `
+                <img src="${e.target.result}">
+                <p class="polaroid-caption">
+                    ${captionInput.value || "Our Memory ❤️"}
+                </p>
+            `;
+
+            /* ADD VIEWER */
+
+            attachViewer(div);
+
+            /* ADD TO TOP */
+
+            gallery.prepend(div);
+
+            /* RESET */
+
+            uploadModal.classList.remove("show");
+
+            photoInput.value = "";
+
+            captionInput.value = "";
+        };
+
+        reader.readAsDataURL(file);
+    });
+
+});
