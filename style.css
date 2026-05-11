@@ -726,6 +726,10 @@ canvas#bgHearts, canvas#proposalHearts {
    MEMORIES PAGE
    ============================================ */
 
+/* ============================================
+   MEMORIES PAGE
+   ============================================ */
+
 .memoriesPage{
     min-height:100vh;
     background:linear-gradient(180deg,#020617 0%,#0b1022 50%,#0f1530 100%);
@@ -738,7 +742,7 @@ canvas#bgHearts, canvas#proposalHearts {
 
 .memories-header{
     text-align:center;
-    padding:70px 20px 40px;
+    padding:80px 20px 40px;
 }
 
 .memories-title{
@@ -746,21 +750,20 @@ canvas#bgHearts, canvas#proposalHearts {
     font-size:48px;
     color:#fff;
     margin-bottom:12px;
-
     text-shadow:0 0 20px rgba(255,110,160,.5);
 
-    animation:titleFade 1s ease;
+    animation:titleFade 1s ease-out;
 }
 
 .memories-subtitle{
     color:#ffbfd6;
     font-size:16px;
-    opacity:.9;
+    opacity:0;
 
-    animation:subtitleFade 1s ease .3s both;
+    animation:subtitleFade 1s ease-out .3s forwards;
 }
 
-/* GRID */
+/* GALLERY */
 
 .polaroid-gallery{
     width:100%;
@@ -778,8 +781,6 @@ canvas#bgHearts, canvas#proposalHearts {
     gap:35px;
 
     justify-items:center;
-
-    align-items:start;
 }
 
 /* CARD */
@@ -801,8 +802,8 @@ canvas#bgHearts, canvas#proposalHearts {
     cursor:pointer;
 
     box-shadow:
-        0 12px 35px rgba(0,0,0,.35),
-        0 0 20px rgba(255,110,160,.08);
+        0 15px 35px rgba(0,0,0,.35),
+        0 0 25px rgba(255,110,160,.08);
 
     opacity:0;
 
@@ -815,29 +816,12 @@ canvas#bgHearts, canvas#proposalHearts {
 
 /* ENTRY DELAYS */
 
-.polaroid:nth-child(1){
-    animation-delay:.1s;
-}
-
-.polaroid:nth-child(2){
-    animation-delay:.2s;
-}
-
-.polaroid:nth-child(3){
-    animation-delay:.3s;
-}
-
-.polaroid:nth-child(4){
-    animation-delay:.4s;
-}
-
-.polaroid:nth-child(5){
-    animation-delay:.5s;
-}
-
-.polaroid:nth-child(6){
-    animation-delay:.6s;
-}
+.polaroid:nth-child(1){ animation-delay:.1s; }
+.polaroid:nth-child(2){ animation-delay:.2s; }
+.polaroid:nth-child(3){ animation-delay:.3s; }
+.polaroid:nth-child(4){ animation-delay:.4s; }
+.polaroid:nth-child(5){ animation-delay:.5s; }
+.polaroid:nth-child(6){ animation-delay:.6s; }
 
 /* HOVER */
 
@@ -845,47 +829,10 @@ canvas#bgHearts, canvas#proposalHearts {
     transform:translateY(-10px) scale(1.03);
 
     box-shadow:
-        0 20px 45px rgba(0,0,0,.45),
-        0 0 25px rgba(255,110,160,.18);
-}
+        0 22px 55px rgba(0,0,0,.45),
+        0 0 30px rgba(255,110,160,.2);
 
-/* IMAGE */
-
-.polaroid img{
-    width:100%;
-
-    height:340px;
-
-    object-fit:cover;
-
-    border-radius:10px;
-
-    display:block;
-
-    transition:
-        transform .4s ease,
-        filter .4s ease;
-}
-
-.polaroid:hover img{
-    transform:scale(1.05);
-    filter:brightness(1.05);
-}
-
-/* CAPTION */
-
-.polaroid-caption{
-    margin-top:14px;
-
-    text-align:center;
-
-    color:#333;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    line-height:1.5;
+    z-index:5;
 }
 
 /* TAPE */
@@ -903,24 +850,86 @@ canvas#bgHearts, canvas#proposalHearts {
     width:70px;
     height:18px;
 
-    background:#f0ddb1;
+    background:#f2deb0;
 
     border-radius:4px;
 
-    opacity:.95;
+    opacity:.9;
+}
+
+/* IMAGE */
+
+.polaroid img{
+    width:100%;
+
+    height:340px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    display:block;
+
+    transition:
+        transform .45s ease,
+        filter .45s ease;
+}
+
+.polaroid:hover img{
+    transform:scale(1.06);
+    filter:brightness(1.05);
+}
+
+/* CAPTION */
+
+.polaroid-caption{
+    margin-top:14px;
+
+    text-align:center;
+
+    font-size:15px;
+    font-weight:600;
+
+    color:#333;
+
+    line-height:1.5;
+}
+
+/* GLOW EFFECT */
+
+.polaroid::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(circle at top,
+    rgba(255,255,255,.25),
+    transparent 60%);
+
+    opacity:0;
+
+    transition:.4s ease;
+
+    pointer-events:none;
+}
+
+.polaroid:hover::after{
+    opacity:1;
 }
 
 /* VIEWER */
 
 .memory-viewer{
     position:fixed;
-
     inset:0;
 
     background:rgba(0,0,0,.92);
 
-    display:flex;
+    backdrop-filter:blur(10px);
 
+    display:flex;
     justify-content:center;
     align-items:center;
 
@@ -941,7 +950,7 @@ canvas#bgHearts, canvas#proposalHearts {
 
 .viewer-content{
     width:100%;
-    max-width:750px;
+    max-width:720px;
 
     text-align:center;
 
@@ -958,7 +967,7 @@ canvas#bgHearts, canvas#proposalHearts {
     border-radius:16px;
 
     box-shadow:
-        0 0 40px rgba(255,110,160,.25);
+    0 0 40px rgba(255,110,160,.25);
 }
 
 .viewer-message{
@@ -967,11 +976,8 @@ canvas#bgHearts, canvas#proposalHearts {
     color:white;
 
     font-size:18px;
-
     line-height:1.7;
 }
-
-/* CLOSE BUTTON */
 
 .viewer-close{
     position:absolute;
@@ -991,12 +997,6 @@ canvas#bgHearts, canvas#proposalHearts {
     z-index:10000;
 }
 
-/* HOME BUTTON FIX */
-
-.float-btn{
-    z-index:1000 !important;
-}
-
 /* ANIMATIONS */
 
 @keyframes memoryReveal{
@@ -1005,7 +1005,7 @@ canvas#bgHearts, canvas#proposalHearts {
         opacity:0;
         transform:
         translateY(40px)
-        scale(.9);
+        scale(.92);
     }
 
     to{
@@ -1013,6 +1013,32 @@ canvas#bgHearts, canvas#proposalHearts {
         transform:
         translateY(0)
         scale(1);
+    }
+}
+
+@keyframes titleFade{
+
+    from{
+        opacity:0;
+        transform:translateY(-25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes subtitleFade{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:.9;
+        transform:translateY(0);
     }
 }
 
@@ -1033,32 +1059,6 @@ canvas#bgHearts, canvas#proposalHearts {
     }
 }
 
-@keyframes titleFade{
-
-    from{
-        opacity:0;
-        transform:translateY(-20px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes subtitleFade{
-
-    from{
-        opacity:0;
-        transform:translateY(15px);
-    }
-
-    to{
-        opacity:.9;
-        transform:translateY(0);
-    }
-}
-
 /* MOBILE */
 
 @media(max-width:768px){
@@ -1074,6 +1074,7 @@ canvas#bgHearts, canvas#proposalHearts {
     .polaroid-gallery{
         grid-template-columns:1fr;
         gap:28px;
+        padding:20px 16px 50px;
     }
 
     .polaroid{
