@@ -293,3 +293,58 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".polaroid, .heart-photo").forEach(el => {
     observer.observe(el);
 });
+const openUpload = document.getElementById("openUpload");
+const uploadModal = document.getElementById("uploadModal");
+const closeUpload = document.getElementById("closeUpload");
+
+const photoInput = document.getElementById("photoInput");
+const captionInput = document.getElementById("captionInput");
+const saveMemoryBtn = document.getElementById("saveMemoryBtn");
+
+const gallery = document.querySelector(".polaroid-gallery");
+
+/* OPEN MODAL */
+
+openUpload.onclick = () => {
+    uploadModal.classList.add("show");
+};
+
+/* CLOSE MODAL */
+
+closeUpload.onclick = () => {
+    uploadModal.classList.remove("show");
+};
+
+/* SAVE MEMORY */
+
+saveMemoryBtn.onclick = () => {
+
+    const file = photoInput.files[0];
+
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        const div = document.createElement("div");
+
+        div.className = "polaroid";
+
+        div.innerHTML = `
+            <img src="${e.target.result}">
+            <p class="polaroid-caption">
+                ${captionInput.value}
+            </p>
+        `;
+
+        gallery.prepend(div);
+
+        uploadModal.classList.remove("show");
+
+        photoInput.value = "";
+        captionInput.value = "";
+    };
+
+    reader.readAsDataURL(file);
+};
