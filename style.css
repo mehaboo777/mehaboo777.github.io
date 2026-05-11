@@ -758,33 +758,45 @@ canvas#bgHearts, canvas#proposalHearts {
 .add-photo-btn{
     position:fixed;
 
-    top:30px;
-    right:30px;
+    top:25px;
+    right:25px;
 
-    background:#ff2d6f;
+    background:linear-gradient(
+        135deg,
+        #ff4f8b,
+        #ff2d6f
+    );
 
     color:white;
 
     border:none;
 
-    padding:16px 28px;
+    padding:16px 26px;
 
     border-radius:999px;
 
-    font-size:18px;
+    font-size:16px;
+
+    font-weight:600;
 
     cursor:pointer;
 
-    z-index:999;
+    z-index:999999;
 
     box-shadow:
-        0 10px 25px rgba(255,45,111,.3);
+        0 10px 25px rgba(255,45,111,.35);
 
-    transition:.3s;
+    transition:.3s ease;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
 }
 
 .add-photo-btn:hover{
-    transform:translateY(-5px);
+    transform:
+        translateY(-5px)
+        scale(1.03);
 }
 
 /* GALLERY */
@@ -1146,11 +1158,22 @@ canvas#bgHearts, canvas#proposalHearts {
 @media(max-width:768px){
 
     .memories-title{
-        font-size:48px;
+        font-size:42px;
+    }
+
+    .memories-subtitle{
+        font-size:12px;
+        padding:0 15px;
+        line-height:1.6;
     }
 
     .polaroid-gallery{
         columns:1;
+        padding:15px;
+    }
+
+    .polaroid-caption{
+        font-size:17px;
     }
 
     .viewer-message{
@@ -1158,10 +1181,12 @@ canvas#bgHearts, canvas#proposalHearts {
     }
 
     .add-photo-btn{
-        top:20px;
-        right:20px;
-        padding:14px 22px;
-        font-size:15px;
+        top:18px;
+        right:18px;
+
+        padding:13px 18px;
+
+        font-size:14px;
     }
 }
 /* ============================================
@@ -1952,16 +1977,6 @@ canvas#bgHearts, canvas#proposalHearts {
     /* MEMORIES PAGE */
     .memories-title {
         font-size: 32px;
-    }
-
-    .polaroid-gallery {
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-    }
-
-    .polaroid {
-        width: 240px;
     }
 
     /* TIMELINE PAGE */
