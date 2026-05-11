@@ -1,61 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inside My Heart ❤️</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inside My Heart ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
+<body class="heartPage">
+    <canvas id="bgHearts"></canvas>
 
-<body class="memoriesPage">
-
-<a class="homeFloatBtn" href="home.html">🏠</a>
-
-<h1 class="memoryTitle">You are the one who live in mAhh Heart ❤️</h1>
-
-<div class="memoryWall">
-
-    <div class="polaroid">
-        <img src="h1.jpeg">
-        <p>The girl who changed my life</p>
+    <!-- Header -->
+    <div class="heart-header">
+        <h1 class="heart-title">You Live in My Heart ❤️</h1>
+        <p class="heart-subtitle">These are the precious images of the girl who means everything to me</p>
     </div>
 
-    <div class="polaroid">
-        <img src="h2.jpeg">
-        <p>My favorite smile</p>
+    <!-- Heart Gallery -->
+    <div class="heart-gallery">
+        <div class="heart-photo" style="animation-delay: 0s;">
+            <img src="h1.jpeg" alt="My girl">
+            <p class="photo-caption">The girl who changed my life</p>
+        </div>
+        
+        <div class="heart-photo" style="animation-delay: 0.15s;">
+            <img src="h2.jpeg" alt="Her smile">
+            <p class="photo-caption">My favorite smile</p>
+        </div>
+        
+        <div class="heart-photo" style="animation-delay: 0.3s;">
+            <img src="h3.jpeg" alt="My peace">
+            <p class="photo-caption">My peace ☮️</p>
+        </div>
+        
+        <div class="heart-photo" style="animation-delay: 0.45s;">
+            <img src="h4.jpeg" alt="My home">
+            <p class="photo-caption">My home ❤️</p>
+        </div>
+        
+        <div class="heart-photo" style="animation-delay: 0.6s;">
+            <img src="h5.jpeg" alt="Forever you">
+            <p class="photo-caption">Forever you</p>
+        </div>
     </div>
 
-    <div class="polaroid">
-        <img src="h3.jpeg">
-        <p>My peace</p>
+    <!-- Message at the end -->
+    <div class="heart-message">
+        <p>Every time I look at these photos, I fall in love with you all over again 💕</p>
     </div>
 
-    <div class="polaroid">
-        <img src="h4.jpeg">
-        <p>My home ❤️</p>
-    </div>
+    <!-- Floating home button -->
+    <a href="home.html" class="float-btn">🏠</a>
 
-    <div class="polaroid">
-        <img src="h5.jpeg">
-        <p>Forever you</p>
-    </div>
-
-</div>
-
-<script>
-/* scroll appear animation */
-const photos = document.querySelectorAll(".polaroid");
-
-const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting){
-            entry.target.classList.add("show");
-        }
-    });
-},{threshold:0.2});
-
-photos.forEach(p=>observer.observe(p));
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>

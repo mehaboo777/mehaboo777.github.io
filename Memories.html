@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="memoriesPage">
+    <canvas id="bgHearts"></canvas>
+
+    <!-- Header -->
+    <div class="memories-header">
+        <h1 class="memories-title">Our Precious Memories ❤️</h1>
+        <p class="memories-subtitle">Click any photo to see a special message</p>
+    </div>
+
+    <!-- Polaroid Gallery -->
+    <div class="polaroid-gallery">
+        <div class="polaroid" data-index="0">
+            <img src="m1.jpeg" alt="Memory 1">
+            <p class="polaroid-caption">The way you look at me</p>
+        </div>
+        
+        <div class="polaroid" data-index="1">
+            <img src="m2.jpeg" alt="Memory 2">
+            <p class="polaroid-caption">Holding your hand 🤍</p>
+        </div>
+        
+        <div class="polaroid" data-index="2">
+            <img src="m3.jpeg" alt="Memory 3">
+            <p class="polaroid-caption">The day I realized... it's you</p>
+        </div>
+        
+        <div class="polaroid" data-index="3">
+            <img src="m4.jpeg" alt="Memory 4">
+            <p class="polaroid-caption">Forever moments</p>
+        </div>
+        
+        <div class="polaroid" data-index="4">
+            <img src="m5.jpeg" alt="Memory 5">
+            <p class="polaroid-caption">My beautiful girl</p>
+        </div>
+        
+        <div class="polaroid" data-index="5">
+            <img src="m6.jpeg" alt="Memory 6">
+            <p class="polaroid-caption">You are my everything</p>
+        </div>
+    </div>
+
+    <!-- Memory fullscreen viewer -->
+    <div id="memoryViewer" class="memory-viewer">
+        <button id="closeMemory" class="viewer-close">✕</button>
+        <div class="viewer-content">
+            <img id="memoryImage" src="" alt="Memory">
+            <p id="memoryText" class="viewer-message"></p>
+        </div>
+    </div>
+
+    <!-- Floating home button -->
+    <a href="home.html" class="float-btn">🏠</a>
+
+    <script src="script.js"></script>
+</body>
+</html>

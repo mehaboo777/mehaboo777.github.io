@@ -1,381 +1,295 @@
-/* =========================
-   PAGE DETECTION SYSTEM
-   ========================= */
+/* ============================================
+   ENHANCED ROMANTIC WEBSITE - MAIN SCRIPT
+   ============================================ */
 
-const isIntroPage = document.getElementById("mainEnvelope") !== null;
+// ============ ENVELOPE OPENING ============
 
+function openLetter() {
+    const envelope = document.getElementById("mainEnvelope");
+    const flash = document.getElementById("openFlash");
+    const intro = document.getElementById("intro");
+    const introScene = document.getElementById("introScene");
 
-/* =========================
-   ENVELOPE OPEN
-   ========================= */
+    if (!envelope || !flash) return;
 
-function openLetter(){
+    // Add opening animation
+    envelope.classList.add("opening");
+    flash.classList.add("flash");
 
-const env = document.getElementById("mainEnvelope");
-const flash = document.getElementById("openFlash");
-
-if(!env || !flash) return;
-
-env.classList.add("opening");
-flash.classList.add("flash");
-
-/* after envelope opens */
-setTimeout(()=>{
-
-    // hide envelope
-    document.getElementById("intro").style.display="none";
-
-    // SHOW INTRO SCENE
-    const scene = document.getElementById("introScene");
-    scene.classList.add("active");
-
-    // start hearts
-    initHearts();
-
-    // start intro animations
-    setTimeout(()=> document.querySelector(".introTitle").classList.add("showIntro"),400);
-    setTimeout(()=> document.querySelector(".introSub").classList.add("showIntro"),1000);
-
-    setTimeout(()=>{
-        showDays();
-        document.getElementById("daysCounter").classList.add("showIntro");
-    },1700);
-
-    setTimeout(()=>{
-        document.getElementById("typing").classList.add("showIntro");
-        typeIntro();
-    },2600);
-
-},900);
+    // After envelope opens
+    setTimeout(() => {
+        intro.style.display = "none";
+        introScene.classList.add("active");
+        
+        // Initialize floating hearts
+        initHearts();
+        
+        // Stagger text animations
+        setTimeout(() => {
+            document.querySelector(".intro-title").classList.add("showIntro");
+        }, 200);
+        
+        setTimeout(() => {
+            document.querySelector(".intro-subtitle").classList.add("showIntro");
+        }, 800);
+        
+        setTimeout(() => {
+            showDaysCounter();
+            document.getElementById("daysCounter").classList.add("showIntro");
+        }, 1400);
+        
+        setTimeout(() => {
+            document.getElementById("typing").classList.add("showIntro");
+            typeIntroText();
+        }, 2200);
+    }, 900);
 }
 
+// ============ DAYS COUNTER ============
 
+function showDaysCounter() {
+    const startDate = new Date(2023, 4, 26); // May 26, 2023
+    const today = new Date();
+    const timeDiff = today - startDate;
+    const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
- 
+    const counter = document.getElementById("daysCounter");
+    let currentCount = daysPassed - 40;
+    if (currentCount < 0) currentCount = 0;
 
-/* =========================
-   DAYS COUNTER
-   ========================= */
-
-function showDays(){
-
-const start = new Date(2023,4,26);
-const today = new Date();
-const diff = today - start;
-const finalDays = Math.floor(diff/(1000*60*60*24));
-
-const counter = document.getElementById("daysCounter");
-
-let current = finalDays - 40;
-if(current < 0) current = 0;
-
-function animate(){
-current++;
-counter.innerHTML =
-"We've been together for <span class='highlight'>" + current + "</span> days ❤️";
-
-if(current < finalDays){
-requestAnimationFrame(animate);
-}
-}
-
-animate();
-}
-
-
-
-/* =========================
-   INTRO TYPING TEXT
-   ========================= */
-
-const text="You are mahh everythingh babeehhhh❤️";
-let i=0;
-let typingStarted=false;
-
-function typeIntro(){
-
-if(typingStarted) return;
-typingStarted=true;
-
-const t=document.getElementById("typing");
-if(!t) return;
-t.innerHTML="";
-
-i=0;
-
-function typing(){
-if(i<text.length){
-t.innerHTML+=text.charAt(i);
-i++;
-setTimeout(typing,60);
-}else{
-setTimeout(()=>{window.location.href="home.html";},2500);
-}
-}
-
-typing();
-}
-
-
-
-let letterStarted = false;
-
-function openRealLetter(){
-
-const card = document.getElementById("letterClosed");
-const letter = document.getElementById("realLetter");
-
-if(!card || !letter) return;
-
-/* hide card */
-card.style.display = "none";
-
-/* show paper */
-letter.style.display = "block";
-
-/* FORCE browser to render it */
-letter.offsetHeight;
-
-/* NOW start typing */
-setTimeout(()=>{
-startLetterTyping();
-},900);
-
-}
-
-
-
-
-
-/* =========================
-   MEMORY PAGE ANIMATION
-   ========================= */
-
-window.addEventListener("load",()=>{
-const items=document.querySelectorAll(".memoryItem");
-items.forEach((item,index)=>{
-setTimeout(()=>{
-item.classList.add("show");
-},index*800);
-});
-});
-
-
-/* =========================
-   PERFECT FLOATING HEARTS
-   (MOBILE + PC FIXED)
-   ========================= */
-
-function initHearts(){
-if(!document.getElementById("bgHearts")) return;
-
-const canvas = document.getElementById("bgHearts");
-if(!canvas) return;
-
-const ctx = canvas.getContext("2d");
-
-function resizeCanvas(){
-    const ratio = window.devicePixelRatio || 1;
-
-    canvas.width = window.innerWidth * ratio;
-    canvas.height = window.innerHeight * ratio;
-
-    canvas.style.width = window.innerWidth + "px";
-    canvas.style.height = window.innerHeight + "px";
-
-    ctx.setTransform(ratio,0,0,ratio,0,0);
-}
-
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-
-let hearts=[];
-
-for(let i=0;i<45;i++){
-    hearts.push({
-        x:Math.random()*window.innerWidth,
-        y:Math.random()*window.innerHeight,
-        size:Math.random()*14+6,
-        speed:Math.random()*0.7+0.25,
-        opacity:Math.random()*0.5+0.2
-    });
-}
-
-function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    hearts.forEach(h=>{
-        h.y -= h.speed;
-
-        if(h.y < -20){
-            h.y = window.innerHeight + 20;
-            h.x = Math.random()*window.innerWidth;
+    function animateCount() {
+        currentCount++;
+        counter.innerHTML = `We've been together for <span class="highlight">${currentCount}</span> days ❤️`;
+        
+        if (currentCount < daysPassed) {
+            requestAnimationFrame(animateCount);
         }
+    }
 
-        ctx.globalAlpha = h.opacity;
-        ctx.fillStyle = "#ff6fa0";
-        ctx.font = h.size+"px serif";
-        ctx.fillText("❤️",h.x,h.y);
+    animateCount();
+}
 
+// ============ INTRO TYPING TEXT ============
+
+const introText = "You are mahh everythingh babeehhhh❤️";
+let typingIndex = 0;
+let isTyping = false;
+
+function typeIntroText() {
+    if (isTyping) return;
+    isTyping = true;
+
+    const typingElement = document.getElementById("typing");
+    if (!typingElement) return;
+
+    typingElement.innerHTML = "";
+    typingIndex = 0;
+
+    function type() {
+        if (typingIndex < introText.length) {
+            typingElement.innerHTML += introText.charAt(typingIndex);
+            typingIndex++;
+            setTimeout(type, 60);
+        } else {
+            // Redirect after typing finishes
+            setTimeout(() => {
+                window.location.href = "home.html";
+            }, 2500);
+        }
+    }
+
+    type();
+}
+
+// ============ FLOATING HEARTS ANIMATION ============
+
+function initHearts() {
+    const canvas = document.getElementById("bgHearts");
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+
+    // Handle canvas resizing
+    function resizeCanvas() {
+        const ratio = window.devicePixelRatio || 1;
+        canvas.width = window.innerWidth * ratio;
+        canvas.height = window.innerHeight * ratio;
+        canvas.style.width = window.innerWidth + "px";
+        canvas.style.height = window.innerHeight + "px";
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    // Create heart particles
+    let hearts = [];
+    for (let i = 0; i < 45; i++) {
+        hearts.push({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            size: Math.random() * 14 + 6,
+            speed: Math.random() * 0.7 + 0.25,
+            opacity: Math.random() * 0.5 + 0.2
+        });
+    }
+
+    // Animation loop
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        hearts.forEach(heart => {
+            heart.y -= heart.speed;
+
+            // Reset heart when it goes off screen
+            if (heart.y < -20) {
+                heart.y = window.innerHeight + 20;
+                heart.x = Math.random() * window.innerWidth;
+            }
+
+            // Draw heart
+            ctx.globalAlpha = heart.opacity;
+            ctx.fillStyle = "#ff6fa0";
+            ctx.font = heart.size + "px serif";
+            ctx.fillText("❤️", heart.x, heart.y);
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+}
+
+// ============ MEMORY PAGE ANIMATIONS ============
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Animate memory gallery items
+    const memoryItems = document.querySelectorAll(".memoryItem");
+    memoryItems.forEach((item, index) => {
+        setTimeout(() => {
+            item.classList.add("show");
+        }, index * 150);
     });
 
-    requestAnimationFrame(draw);
-}
-
-draw();
-}
-/* ===== PERFECT LETTER TYPING (FIXED) ===== */
-
-const loveLetter = [
-"I still remember the first day I texted you.",
-"I didn’t know that message would change my life forever.",
-"",
-"From our first meeting…",
-"to our bus journeys…",
-"to the moment I held your hand for the first time…",
-"",
-"Every second with you became a memory I never want to lose.",
-"",
-"You are not just someone I love,",
-"you are my peace,",
-"my happiness,",
-"and the safest place my heart has ever found.",
-"",
-"That night… our first kiss…",
-"will always be the best day of my life.",
-"",
-"No matter how many days pass,",
-"I promise I will always choose you again and again.",
-"",
-"I love you more than words can ever explain. ❤️"
-];
-
-function startLetterTyping(){
-
-const el = document.getElementById("letterText");
-if(!el) return;
-
-el.innerHTML = "";
-
-let line = 0;
-let char = 0;
-
-function type(){
-
-// FINISHED LETTER
-if(line >= loveLetter.length){
-    // remove typing cursor at the end
-    el.innerHTML = el.innerHTML.replace(/\|$/, "");
-    return;
-}
-
-// typing characters
-if(char < loveLetter[line].length){
-    el.innerHTML += loveLetter[line][char];
-    char++;
-    setTimeout(type,35);
-}
-else{
-    el.innerHTML += "<br>";
-    line++;
-    char = 0;
-    setTimeout(type,450);
-}
-
-}
-
-type();
-}
-let taps=0;
-document.body.addEventListener("click",()=>{
-taps++;
-if(taps==7){
-alert("shooohh You found my secret msgg bubuuhh… I loveh youh more than I show babeehh and i promise ill be with myhh girl in everyyhh situation❤️");
-}
-});
-/* ===== MEMORY SCROLL REVEAL ===== */
-
-window.addEventListener("scroll", ()=>{
-
-const items = document.querySelectorAll(".polaroid");
-
-items.forEach(item=>{
-const rect = item.getBoundingClientRect();
-
-if(rect.top < window.innerHeight - 80){
-item.classList.add("show");
-}
+    // Animate polaroids
+    const polaroids = document.querySelectorAll(".polaroid");
+    polaroids.forEach((polaroid, index) => {
+        setTimeout(() => {
+            polaroid.classList.add("show");
+        }, index * 200);
+    });
 });
 
-});
-/* ===== MEMORY PAGE AUTO APPEAR FIX ===== */
+// ============ MEMORY VIEWER ============
 
-window.addEventListener("load", ()=>{
-
-const items = document.querySelectorAll(".polaroid");
-
-items.forEach((item,index)=>{
-setTimeout(()=>{
-item.classList.add("show");
-}, index*500);
-});
-
-});
-/* ===== MEMORY CLICK VIEWER ===== */
-
-/* ===== MEMORY VIEWER (SAFE) ===== */
-
-const viewer = document.getElementById("memoryViewer");
-
-if(viewer){
-
-const viewerImg = document.getElementById("memoryImage");
-const viewerText = document.getElementById("memoryText");
-const closeBtn = document.getElementById("closeMemory");
-
-const memoryMessages = [
-"Youh arehh mahh everythingh maahh princess ❤️",
-"I still remember how your hand felt in mine 🤍",
-"you arehh so precious to meehh babeehh",
-"youhh really make me blushhh everydayhh",
-"I want to make a thousand more memories with you, my love.",
-"You are my forever and always. ❤️"
-];
-
-document.querySelectorAll(".polaroid").forEach((photo, index)=>{
-photo.addEventListener("click", ()=>{
-const img = photo.querySelector("img");
-
-viewerImg.src = img.src;
-viewerText.innerText = memoryMessages[index];
-
-viewer.classList.add("show");
-document.body.style.overflow="hidden";
-});
-});
-
-closeBtn.addEventListener("click", ()=>{
-viewer.classList.remove("show");
-document.body.style.overflow="auto";
-});
-
-viewer.addEventListener("click",(e)=>{
-if(e.target === viewer){
-viewer.classList.remove("show");
-document.body.style.overflow="auto";
-}
-});
-
-}
-
-/* AUTO ATTACH LETTER CLICK */
 document.addEventListener("DOMContentLoaded", () => {
+    const viewer = document.getElementById("memoryViewer");
+    if (!viewer) return;
 
-const card = document.getElementById("letterClosed");
+    const viewerImg = document.getElementById("memoryImage");
+    const viewerText = document.getElementById("memoryText");
+    const closeBtn = document.getElementById("closeMemory");
 
-if(card){
-card.addEventListener("click", openRealLetter);
-}
+    const memoryMessages = [
+        "You are mahh everythingh maahh princess ❤️",
+        "I still remember how your hand felt in mine 🤍",
+        "You are so precious to me babeeh",
+        "You really make me blush every day",
+        "I want to make a thousand more memories with you, my love",
+        "You are my forever and always ❤️"
+    ];
 
+    // Handle polaroid clicks
+    document.querySelectorAll(".polaroid").forEach((photo, index) => {
+        photo.addEventListener("click", () => {
+            const img = photo.querySelector("img");
+            viewerImg.src = img.src;
+            viewerText.innerText = memoryMessages[index] || "You are my everything ❤️";
+            viewer.classList.add("show");
+            document.body.style.overflow = "hidden";
+        });
+    });
+
+    // Close viewer
+    closeBtn.addEventListener("click", () => {
+        viewer.classList.remove("show");
+        document.body.style.overflow = "auto";
+    });
+
+    // Close on outside click
+    viewer.addEventListener("click", (e) => {
+        if (e.target === viewer) {
+            viewer.classList.remove("show");
+            document.body.style.overflow = "auto";
+        }
+    });
 });
 
+// ============ SCROLL REVEAL ANIMATION ============
+
+window.addEventListener("scroll", () => {
+    const polaroids = document.querySelectorAll(".polaroid");
+    
+    polaroids.forEach(polaroid => {
+        const rect = polaroid.getBoundingClientRect();
+        
+        if (rect.top < window.innerHeight - 100) {
+            polaroid.classList.add("show");
+        }
+    });
+});
+
+// ============ EASTER EGG ============
+
+let tapCount = 0;
+document.body.addEventListener("click", () => {
+    tapCount++;
+    
+    if (tapCount === 7) {
+        showEasterEgg();
+        tapCount = 0;
+    }
+});
+
+function showEasterEgg() {
+    alert("🎉 Shooohh! You found my secret message! 🎉\n\nI love you more than I show babeeh, and I promise I'll be with my girl in every situation ❤️\n\nForever yours! 💕");
+}
+
+// ============ SMOOTH SCROLL ============
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+        }
+    });
+});
+
+// ============ PAGE LOAD ANIMATION ============
+
+window.addEventListener("load", () => {
+    document.body.style.opacity = "1";
+});
+
+// ============ INTERSECTION OBSERVER FOR LAZY ANIMATIONS ============
+
+const observerOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -50px 0px"
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe all elements that need animation
+document.querySelectorAll(".polaroid, .heart-photo").forEach(el => {
+    observer.observe(el);
+});

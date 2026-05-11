@@ -1,69 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Love</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body class="menuPage">
-<a class="homeFloatBtn" href="home.html">🏠</a>
+    <canvas id="bgHearts"></canvas>
+    
+    <!-- Navigation -->
+    <nav class="nav-top">
+        <a href="home.html" class="nav-brand">💕 My Love Collection</a>
+    </nav>
 
-<canvas id="bgHearts"></canvas>
-
-<div class="menuHeader">
-    <h1>For My Loveh ❤️</h1>
-    <p>A collection of moments, memories and feelings that words can barely express</p>
-</div>
-
-<div class="menuGrid">
-
-    <a href="letter.html" class="menuCard">
-        <div class="cardIcon">💌</div>
-        <div class="cardTitle">A Love Letter For You</div>
-        <div class="cardDesc">Read my heart's words for you</div>
-    </a>
-
-    <a href="memories.html" class="menuCard">
-        <div class="cardIcon">📸</div>
-        <div class="cardTitle">Our Memories</div>
-        <div class="cardDesc">Beautiful moments we've shared</div>
-    </a>
-
-    <a href="timeline.html" class="menuCard">
-        <div class="cardIcon">📅</div>
-        <div class="cardTitle">Our Timeline</div>
-        <div class="cardDesc">The story of us</div>
-    </a>
-
-    <a href="forever.html" class="menuCard">
-        <div class="cardIcon">❤️</div>
-        <div class="cardTitle">Forever & Always</div>
-        <div class="cardDesc">You are my everything</div>
-    </a>
-<a href="proposal.html" class="menuCard specialCard">
-  <div class="cardAnim">
-    <div class="innerTilt">
-        <div class="cardIcon">❤️</div>
-        <div class="cardTitle">Minnooooseehhh</div>
-        <div class="cardDesc">I have something to ask you...</div>
+    <!-- Header section -->
+    <div class="menu-header">
+        <h1 class="menu-title">For My Loveh ❤️</h1>
+        <p class="menu-subtitle">A collection of moments, memories and feelings that words can barely express</p>
+        <div class="title-underline"></div>
     </div>
-  </div>
-</a>
-<a href="heart.html" class="menuCard specialCard">
-    <div class="innerTilt">
-        <div class="cardIcon">💌</div>
-        <div class="cardTitle">Touch to open My Heart Bubuhh</div>
-        <div class="cardDesc"></div>
+
+    <!-- Menu cards grid -->
+    <div class="menu-grid">
+        <!-- Love Letter -->
+        <a href="letter.html" class="menu-card card-1">
+            <div class="card-glow"></div>
+            <div class="card-content">
+                <div class="card-icon">💌</div>
+                <h3 class="card-title">A Love Letter For You</h3>
+                <p class="card-desc">Read my heart's deepest words</p>
+            </div>
+            <div class="card-hover-arrow">→</div>
+        </a>
+
+        <!-- Memories -->
+        <a href="memories.html" class="menu-card card-2">
+            <div class="card-glow"></div>
+            <div class="card-content">
+                <div class="card-icon">📸</div>
+                <h3 class="card-title">Our Memories</h3>
+                <p class="card-desc">Beautiful moments frozen in time</p>
+            </div>
+            <div class="card-hover-arrow">→</div>
+        </a>
+
+        <!-- Timeline -->
+        <a href="timeline.html" class="menu-card card-3">
+            <div class="card-glow"></div>
+            <div class="card-content">
+                <div class="card-icon">📅</div>
+                <h3 class="card-title">Our Timeline</h3>
+                <p class="card-desc">The story of us unfolds</p>
+            </div>
+            <div class="card-hover-arrow">→</div>
+        </a>
+
+        <!-- Forever -->
+        <a href="forever.html" class="menu-card card-4">
+            <div class="card-glow"></div>
+            <div class="card-content">
+                <div class="card-icon">💎</div>
+                <h3 class="card-title">Forever & Always</h3>
+                <p class="card-desc">My promise to you</p>
+            </div>
+            <div class="card-hover-arrow">→</div>
+        </a>
+
+        <!-- Heart inside -->
+        <a href="heart.html" class="menu-card card-5 special-card">
+            <div class="card-glow"></div>
+            <div class="card-content">
+                <div class="card-icon special-icon">💗</div>
+                <h3 class="card-title">You Live In My Heart</h3>
+                <p class="card-desc">See how much you mean to me</p>
+            </div>
+            <div class="card-hover-arrow">→</div>
+        </a>
+
+        <!-- Proposal -->
+        <a href="proposal.html" class="menu-card card-6 special-card">
+            <div class="card-glow"></div>
+            <div class="card-content">
+                <div class="card-icon special-icon">💍</div>
+                <h3 class="card-title">Will You Be Mine?</h3>
+                <p class="card-desc">Something special to ask...</p>
+            </div>
+            <div class="card-hover-arrow">→</div>
+        </a>
     </div>
-</a>
 
+    <!-- Floating home button -->
+    <a href="home.html" class="float-btn" title="Home">🏠</a>
 
-
-
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

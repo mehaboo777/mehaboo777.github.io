@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forever ❤️</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be Mine? ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body class="proposalPage">
+    <canvas id="proposalHearts"></canvas>
 
-<a class="homeFloatBtn" href="home.html">🏠</a>
+    <!-- Proposal Box -->
+    <div class="proposal-container">
+        <div class="proposal-box">
+            <div class="proposal-glow"></div>
+            
+            <div class="proposal-content">
+                <h1 class="proposal-title">I Have Something to Ask You...</h1>
+                
+                <div class="proposal-message">
+                    <p>You came into my life unexpectedly,</p>
+                    <p>but you became my everything.</p>
+                </div>
 
-<canvas id="proposalHearts"></canvas>
+                <h2 class="proposal-question">Will you stay with me forever? ❤️</h2>
 
-<div class="proposalBox">
-
-    <h1 class="proposalTitle">I have something to ask you...</h1>
-
-    <p class="proposalSub">You came into my life unexpectedly,</p>
-    <p class="proposalSub">but you became my everything.</p>
-
-    <h2 class="bigQuestion">Will you stay with me forever? ❤️</h2>
-
-    <div class="btns">
-        <button class="yesBtn" onclick="sayYes()">YES ❤️</button>
-        <button class="yesBtn" onclick="sayYes()">YES ❤️</button>
+                <div class="proposal-buttons">
+                    <button class="btn-yes" onclick="sayYes()">
+                        <span>YES ❤️</span>
+                    </button>
+                    <button class="btn-yes" onclick="sayYes()">
+                        <span>YES ❤️</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
-</div>
+    <!-- Runaway No button -->
+    <button id="noBtn" class="btn-no">No 😢</button>
 
-<button id="noBtn">No 😢</button>
+    <!-- Floating home button -->
+    <a href="home.html" class="float-btn">🏠</a>
 
-<script src="proposal.js"></script>
+    <script src="proposal.js"></script>
 </body>
 </html>

@@ -1,38 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forever & Always</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forever & Always ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
+<body class="foreverPage">
+    <canvas id="bgHearts"></canvas>
 
-<body class="menuPage">
-<a class="homeFloatBtn" href="home.html">🏠</a>
-<canvas id="bgHearts"></canvas>
+    <!-- Content -->
+    <div class="forever-container">
+        <div class="forever-content">
+            <h1 class="forever-title">Forever & Always ❤️</h1>
+            
+            <div class="forever-message">
+                <p>No matter what happens...</p>
+                <p>No matter where life takes us...</p>
+                <p class="highlight-text">I will always choose you.</p>
+                <p>Every single time.</p>
+            </div>
 
-<a class="backBtn" href="home.html">← Back to Home</a>
+            <div class="forever-promise">
+                <p>✨ You are my forever ✨</p>
+            </div>
 
-<div style="margin-top:120px">
+            <!-- Voice message section -->
+            <div class="voice-section">
+                <p class="voice-label">Listen to my voice when you miss me 🎵</p>
+                <audio controls class="voice-player">
+                    <source src="voice.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <p class="voice-note">(A reminder of my love for you)</p>
+            </div>
 
-<h1 style="color:#8a1236;">Forever & Always ❤️</h1>
-<p style="color:#b64a6a; max-width:500px; margin:auto;">
-No matter what happens, no matter where life takes us,
-I will always choose you. Every single time.
-</p>
+            <!-- Additional hearts -->
+            <div class="forever-hearts">
+                ❤️ ❤️ ❤️ ❤️ ❤️
+            </div>
+        </div>
+    </div>
 
-<br><br>
+    <!-- Floating home button -->
+    <a href="home.html" class="float-btn">🏠</a>
 
-<audio controls style="margin-top:40px">
-<source src="voice.mp3" type="audio/mpeg">
-</audio>
-
-<p style="margin-top:15px; color:#b64a6a;">
-(Play this when you miss me ponnehh💞)
-</p>
-
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

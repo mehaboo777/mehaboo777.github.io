@@ -1,56 +1,53 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Minnuhh ❤️</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body class="introPage">
-
-<canvas id="bgHearts"></canvas>
-
-<div id="intro">
-
-    <div id="mainEnvelope" class="envelope" onclick="openLetter()">
-        <div class="seal">❤️</div>
-        <p class="tap">Tap to open bubuuhh</p>
+    <!-- Floating hearts background -->
+    <canvas id="bgHearts"></canvas>
+    
+    <!-- Love envelope animation -->
+    <div id="intro" class="intro-container">
+        <div id="mainEnvelope" class="envelope" onclick="openLetter()">
+            <div class="envelope-seal">❤️</div>
+            <div class="envelope-content">
+                <p class="envelope-text">Open Your Heartfelt Message</p>
+            </div>
+            <p class="envelope-tap">✨ Click to Begin ✨</p>
+        </div>
     </div>
 
-</div>
+    <!-- Flash effect on envelope open -->
+    <div id="openFlash"></div>
 
-<!-- SOFT LIGHT FLASH -->
-<div id="openFlash"></div>
+    <!-- Intro scene with story -->
+    <div id="introScene" class="intro-scene">
+        <div class="intro-card">
+            <div class="intro-header">
+                <h1 class="intro-title">Hello, My Love ❤️</h1>
+                <p class="intro-subtitle">I created something special just for you...</p>
+            </div>
+            
+            <div class="intro-content">
+                <div id="daysCounter" class="days-counter"></div>
+                <p id="typing" class="typing-text"></p>
+            </div>
 
-<!-- INTRO STORY SCREEN -->
-<div id="introScene">
-
-    <div class="introCard">
-
-        <h1 class="introTitle">Heyh Mahh Loveh ❤️</h1>
-
-        <p class="introSub">
-            I made something special for youh nashuh
-        </p>
-
-        <div id="daysCounter"></div>
-
-        <p id="typing"></p>
-
+            <div class="intro-footer">
+                <div class="floating-hearts">
+                    <span class="heart-icon">❤️</span>
+                    <span class="heart-icon">❤️</span>
+                    <span class="heart-icon">❤️</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-</div>
-
-
-
-<audio id="music" loop>
-<source src="song.mp3" type="audio/mp3">
-</audio>
-
-<script src="script.js"></script>
-
-
+    <script src="script.js"></script>
 </body>
 </html>
