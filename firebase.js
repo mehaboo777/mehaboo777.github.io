@@ -42,38 +42,73 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const gallery =
         document.querySelector(".polaroid-gallery");
+const prevBtn =
+    document.getElementById("prevMemory");
 
-    function attachViewer(card){
+const nextBtn =
+    document.getElementById("nextMemory");
 
-        card.addEventListener("click", () => {
+let currentIndex = 0;
+nextBtn.addEventListener("click", () => {
 
-            const img = card.querySelector("img");
+    showMemory(currentIndex + 1);
+});
 
-            const caption =
-                card.querySelector(".polaroid-caption");
+prevBtn.addEventListener("click", () => {
 
-            viewerImg.src = img.src;
+    showMemory(currentIndex - 1);
+});
+   function showMemory(index){
 
-            viewerText.innerText =
-                caption.innerText;
+    const cards =
+        [...document.querySelectorAll(".polaroid")];
 
-            viewer.classList.add("show");
+    if(index < 0)
+        index = cards.length - 1;
 
-            document.body.style.overflow = "hidden";
-        });
-    }
+    if(index >= cards.length)
+        index = 0;
 
-    document.querySelectorAll(".polaroid")
-        .forEach(card => {
-            attachViewer(card);
-        });
+    currentIndex = index;
 
-    closeMemory.addEventListener("click", () => {
+    const card = cards[index];
 
-        viewer.classList.remove("show");
+    const img =
+        card.querySelector("img");
 
-        document.body.style.overflow = "auto";
+    const caption =
+        card.querySelector(".polaroid-caption");
+
+    viewerImg.src = img.src;
+
+    viewerText.innerText =
+        caption.innerText;
+
+    viewer.classList.add("show");
+
+    document.body.style.overflow = "hidden";
+}
+
+function attachViewer(card){
+
+    card.addEventListener("click", () => {
+
+        const cards =
+            [...document.querySelectorAll(".polaroid")];
+
+        currentIndex =
+            cards.indexOf(card);
+
+        showMemory(currentIndex);
     });
+}
+
+document.querySelectorAll(".polaroid")
+    .forEach(card => {
+
+        attachViewer(card);
+    });
+
 
     // LOAD SAVED MEMORIES
 
@@ -183,5 +218,32 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         reader.readAsDataURL(file);
     });
+let touchStartX = 0;
+let touchEndX = 0;
+
+viewer.addEventListener("touchstart", (e) => {
+
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+viewer.addEventListener("touchend", (e) => {
+
+    touchEndX = e.changedTouches[0].screenX;
+
+    handleSwipe();
+});
+
+function handleSwipe(){
+
+    if(touchEndX < touchStartX - 50){
+
+        showMemory(currentIndex + 1);
+    }
+
+    if(touchEndX > touchStartX + 50){
+
+        showMemory(currentIndex - 1);
+    }
+}
 
 });

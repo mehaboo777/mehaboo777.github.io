@@ -1144,6 +1144,84 @@ canvas#bgHearts, canvas#proposalHearts {
         height: 200px;
     }
 }
+/* =========================
+   VIEWER NAVIGATION
+========================= */
+
+.viewer-nav{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.85);
+    color: #111;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: 0.25s ease;
+    backdrop-filter: blur(10px);
+}
+
+.viewer-nav:hover{
+    transform: translateY(-50%) scale(1.1);
+}
+
+.viewer-nav.prev{
+    left: -70px;
+}
+
+.viewer-nav.next{
+    right: -70px;
+}
+
+/* BETTER CLOSE BUTTON */
+
+.viewer-close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    color: #111;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 2000;
+    transition: 0.25s ease;
+}
+
+.viewer-close:hover{
+    transform: scale(1.1) rotate(90deg);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .viewer-nav{
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+    }
+
+    .viewer-nav.prev{
+        left: 10px;
+    }
+
+    .viewer-nav.next{
+        right: 10px;
+    }
+
+    .viewer-close{
+        top: 15px;
+        right: 15px;
+    }
+}
 /* ============================================
    TIMELINE PAGE
    ============================================ */
