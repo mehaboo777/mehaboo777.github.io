@@ -721,472 +721,427 @@ canvas#bgHearts, canvas#proposalHearts {
     50% { transform: translateY(-8px); }
 }
 
+/* ========================================================
+   MEMORIES PAGE FIX - REPLACE THIS SECTION IN STYLE.CSS
+   Find line "MEMORIES PAGE" and replace until "TIMELINE PAGE"
+   ======================================================== */
+
 /* ============================================
    MEMORIES PAGE
    ============================================ */
 
-.memoriesPage{
-    min-height:100vh;
-    background:#fff7fa;
-    font-family:'Poppins',sans-serif;
-    overflow-x:hidden;
-    padding-bottom:100px;
+.memoriesPage {
+    min-height: 100vh;
+    background: #fff7fa;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    padding-bottom: 100px;
 }
 
 /* HEADER */
 
-.memories-header{
-    text-align:center;
-    padding:80px 20px 40px;
+.memories-header {
+    text-align: center;
+    padding: 80px 20px 40px;
 }
 
-.memories-title{
-    font-family:'Playfair Display',serif;
-    font-size:72px;
-    color:#ff2d6f;
+.memories-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: #ff2d6f;
+    margin-bottom: 8px;
 }
 
-.memories-subtitle{
-    margin-top:10px;
-    letter-spacing:3px;
-    color:#ff6b95;
-    font-size:14px;
+.memories-subtitle {
+    margin-top: 10px;
+    letter-spacing: 3px;
+    color: #ff6b95;
+    font-size: 13px;
 }
 
 /* ADD BUTTON */
 
-.add-photo-btn{
-    position:fixed;
-
-    top:25px;
-    right:25px;
-
-    background:linear-gradient(
-        135deg,
-        #ff4f8b,
-        #ff2d6f
-    );
-
-    color:white;
-
-    border:none;
-
-    padding:16px 26px;
-
-    border-radius:999px;
-
-    font-size:16px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    z-index:999999;
-
-    box-shadow:
-        0 10px 25px rgba(255,45,111,.35);
-
-    transition:.3s ease;
-
-    display:flex;
-    align-items:center;
-    gap:8px;
+.add-photo-btn {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    background: linear-gradient(135deg, #ff4f8b, #ff2d6f);
+    color: white;
+    border: none;
+    padding: 16px 26px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 999999;
+    box-shadow: 0 10px 25px rgba(255, 45, 111, 0.35);
+    transition: 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.add-photo-btn:hover{
-    transform:
-        translateY(-5px)
-        scale(1.03);
+.add-photo-btn:hover {
+    transform: translateY(-5px) scale(1.03);
 }
 
-/* GALLERY */
+/* GALLERY - GRID LAYOUT (NOT COLUMNS!) */
 
-.polaroid-gallery{
-    columns:3 280px;
-    column-gap:28px;
-
-    max-width:1300px;
-
-    margin:auto;
-
-    padding:20px;
+.polaroid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 /* POLAROID */
 
-.polaroid{
-    position:relative;
-
-    background:white;
-
-    margin-bottom:28px;
-
-    padding:14px 14px 60px;
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    break-inside:avoid;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.08);
-
-    opacity:0;
-
-    transform:
-        translateY(60px)
-        scale(.9);
-
-    animation:
-        cardReveal .8s cubic-bezier(.22,.9,.3,1) forwards;
-
-    transition:
-        transform .35s ease,
-        box-shadow .35s ease;
+.polaroid {
+    position: relative;
+    background: white;
+    padding: 12px 12px 50px;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+    animation: cardReveal 0.7s cubic-bezier(0.22, 0.9, 0.3, 1) forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* ENTRY DELAYS */
 
-.polaroid:nth-child(1){ animation-delay:.1s; }
-.polaroid:nth-child(2){ animation-delay:.25s; }
-.polaroid:nth-child(3){ animation-delay:.4s; }
-.polaroid:nth-child(4){ animation-delay:.55s; }
-.polaroid:nth-child(5){ animation-delay:.7s; }
-.polaroid:nth-child(6){ animation-delay:.85s; }
+.polaroid:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.polaroid:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.polaroid:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.polaroid:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.polaroid:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.polaroid:nth-child(6) {
+    animation-delay: 0.6s;
+}
 
 /* HOVER */
 
-.polaroid:hover{
-    transform:
-        translateY(-10px)
-        scale(1.02);
-
-    box-shadow:
-        0 18px 40px rgba(0,0,0,.15);
+.polaroid:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
 /* TAPE */
 
-.polaroid::before{
-    content:"";
-
-    position:absolute;
-
-    top:12px;
-    left:50%;
-
-    transform:
-        translateX(-50%)
-        rotate(2deg);
-
-    width:90px;
-    height:24px;
-
-    background:
-        rgba(255,255,255,.55);
-
-    backdrop-filter:blur(6px);
-
-    border:
-        1px solid rgba(255,255,255,.7);
-
-    z-index:2;
+.polaroid::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    width: 80px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    z-index: 2;
 }
 
-/* IMAGE */
+/* IMAGE - FIXED HEIGHT */
 
-.polaroid img{
-    width:100%;
-    border-radius:12px;
-    display:block;
+.polaroid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
 }
 
 /* CAPTION */
 
-.polaroid-caption{
-    position:absolute;
-
-    bottom:18px;
-    left:0;
-    right:0;
-
-    text-align:center;
-
-    font-size:20px;
-
-    color:#444;
-
-    font-family:'Playfair Display',serif;
+.polaroid-caption {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+    font-family: 'Playfair Display', serif;
+    padding: 0 10px;
 }
 
 /* VIEWER */
 
-.memory-viewer{
-    position:fixed;
-    inset:0;
-
-    background:rgba(0,0,0,.85);
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    padding:20px;
-
-    opacity:0;
-    visibility:hidden;
-
-    transition:.35s ease;
-
-    z-index:9999;
-
-    backdrop-filter:blur(10px);
+.memory-viewer {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
 }
 
-.memory-viewer.show{
-    opacity:1;
-    visibility:visible;
+.memory-viewer.show {
+    opacity: 1;
+    visibility: visible;
 }
 
-.viewer-content{
-    position:relative;
-
-    width:100%;
-    max-width:850px;
-
-    background:white;
-
-    padding:18px 18px 70px;
-
-    border-radius:24px;
-
-    transform:
-        scale(.8)
-        translateY(40px);
-
-    transition:.4s ease;
+.viewer-content {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    background: white;
+    padding: 20px 20px 60px;
+    border-radius: 20px;
+    transform: scale(0.8) translateY(40px);
+    transition: 0.4s ease;
 }
 
-.memory-viewer.show .viewer-content{
-    transform:
-        scale(1)
-        translateY(0);
+.memory-viewer.show .viewer-content {
+    transform: scale(1) translateY(0);
 }
 
-#memoryImage{
-    width:100%;
-    max-height:75vh;
-    object-fit:contain;
-    border-radius:16px;
+#memoryImage {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 12px;
 }
 
-.viewer-message{
-    position:absolute;
-
-    bottom:22px;
-    left:0;
-    right:0;
-
-    text-align:center;
-
-    font-size:24px;
-
-    color:#333;
-
-    font-family:'Playfair Display',serif;
+.viewer-message {
+    position: absolute;
+    bottom: 18px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 20px;
+    color: #444;
+    font-family: 'Playfair Display', serif;
+    padding: 0 15px;
 }
 
-.viewer-close{
-    position:absolute;
+.viewer-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
 
-    top:20px;
-    right:20px;
-
-    width:42px;
-    height:42px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:rgba(0,0,0,.5);
-
-    color:white;
-
-    font-size:22px;
-
-    cursor:pointer;
+.viewer-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: rotate(90deg);
 }
 
 /* UPLOAD MODAL */
 
-.upload-modal{
-    position:fixed;
-    inset:0;
-
-    background:rgba(0,0,0,.6);
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    opacity:0;
-    visibility:hidden;
-
-    transition:.35s ease;
-
-    z-index:9999;
+.upload-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+    z-index: 9999;
 }
 
-.upload-modal.show{
-    opacity:1;
-    visibility:visible;
+.upload-modal.show {
+    opacity: 1;
+    visibility: visible;
 }
 
-.upload-box{
-    width:90%;
-    max-width:420px;
-
-    background:white;
-
-    padding:35px;
-
-    border-radius:24px;
-
-    position:relative;
-
-    transform:scale(.8);
-
-    transition:.35s ease;
+.upload-box {
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    position: relative;
+    transform: scale(0.8);
+    transition: 0.3s ease;
 }
 
-.upload-modal.show .upload-box{
-    transform:scale(1);
+.upload-modal.show .upload-box {
+    transform: scale(1);
 }
 
-.upload-box h2{
-    text-align:center;
-    margin-bottom:25px;
-    color:#ff2d6f;
+.upload-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff2d6f;
+    font-size: 22px;
 }
 
-.upload-box input{
-    width:100%;
-    margin-bottom:18px;
-    padding:14px;
-    border:1px solid #ddd;
-    border-radius:12px;
+.upload-box input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
 }
 
-#saveMemoryBtn{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:14px;
-    background:#ff2d6f;
-    color:white;
-    cursor:pointer;
+#saveMemoryBtn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff4f8b, #ff2d6f);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-.close-upload{
-    position:absolute;
-    top:15px;
-    right:18px;
-    border:none;
-    background:none;
-    font-size:24px;
-    cursor:pointer;
+#saveMemoryBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 45, 111, 0.3);
+}
+
+.close-upload {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    border: none;
+    background: none;
+    font-size: 22px;
+    color: #999;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.close-upload:hover {
+    color: #333;
+    transform: rotate(90deg);
 }
 
 /* HOME BUTTON */
 
-.float-btn{
-    position:fixed;
+.float-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff4f8b, #ff2d6f);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 28px;
+    z-index: 999;
+    box-shadow: 0 10px 25px rgba(255, 45, 111, 0.3);
+    transition: 0.3s ease;
+}
 
-    bottom:25px;
-    right:25px;
-
-    width:60px;
-    height:60px;
-
-    border-radius:50%;
-
-    background:#ff2d6f;
-
-    color:white;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    text-decoration:none;
-
-    font-size:28px;
-
-    z-index:999;
-
-    box-shadow:
-        0 10px 25px rgba(255,45,111,.3);
+.float-btn:hover {
+    transform: translateY(-5px) scale(1.05);
 }
 
 /* ANIMATION */
 
-@keyframes cardReveal{
-
-    from{
-        opacity:0;
-
-        transform:
-            translateY(60px)
-            scale(.9);
+@keyframes cardReveal {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
     }
-
-    to{
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
 /* MOBILE */
 
-@media(max-width:768px){
-
-    .memories-title{
-        font-size:42px;
+@media (max-width: 768px) {
+    .memories-title {
+        font-size: 38px;
     }
 
-    .memories-subtitle{
-        font-size:12px;
-        padding:0 15px;
-        line-height:1.6;
+    .memories-subtitle {
+        font-size: 11px;
+        padding: 0 15px;
+        line-height: 1.6;
     }
 
-    .polaroid-gallery{
-        columns:1;
-        padding:15px;
+    .polaroid-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        padding: 15px;
     }
 
-    .polaroid-caption{
-        font-size:17px;
+    .polaroid img {
+        height: 180px;
     }
 
-    .viewer-message{
-        font-size:18px;
+    .polaroid-caption {
+        font-size: 14px;
     }
 
-    .add-photo-btn{
-        top:18px;
-        right:18px;
+    .viewer-message {
+        font-size: 16px;
+    }
 
-        padding:13px 18px;
+    .add-photo-btn {
+        top: 18px;
+        right: 18px;
+        padding: 12px 18px;
+        font-size: 14px;
+    }
 
-        font-size:14px;
+    .float-btn {
+        width: 54px;
+        height: 54px;
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .memories-title {
+        font-size: 32px;
+    }
+
+    .polaroid-gallery {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .polaroid img {
+        height: 200px;
     }
 }
 /* ============================================
