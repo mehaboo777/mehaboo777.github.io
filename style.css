@@ -2476,8 +2476,10 @@ canvas#bgHearts, canvas#proposalHearts {
         width: 200px;
     }
 }
-html,
-body{
-    height: 100%;
+.chat-page{
+    overflow: hidden;
+    height: 100dvh;
+}
+.chat-page body{
     overflow: hidden;
 }
