@@ -887,22 +887,25 @@ canvas#bgHearts, canvas#proposalHearts {
 
 /* VIEWER */
 
-.memory-viewer {
+.memory-viewer{
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.85);
+
+    background: rgba(0,0,0,0.92);
+
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 20px;
+    justify-content: center;
+
     opacity: 0;
     visibility: hidden;
+
     transition: 0.3s ease;
-    z-index: 9999;
-    backdrop-filter: blur(10px);
+
+    z-index: 999999;
 }
 
-.memory-viewer.show {
+.memory-viewer.show{
     opacity: 1;
     visibility: visible;
 }

@@ -108,7 +108,14 @@ document.querySelectorAll(".polaroid")
 
         attachViewer(card);
     });
+closeMemory.addEventListener("click", () => {
 
+    viewer.classList.remove("show");
+
+    viewerImg.src = "";
+
+    document.body.style.overflow = "auto";
+});
 
     // LOAD SAVED MEMORIES
 
