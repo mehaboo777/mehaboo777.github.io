@@ -5,43 +5,81 @@
 // ============ ENVELOPE OPENING ============
 
 function openLetter() {
-    const envelope = document.getElementById("mainEnvelope");
-    const flash = document.getElementById("openFlash");
-    const intro = document.getElementById("intro");
-    const introScene = document.getElementById("introScene");
+
+    const secret =
+        prompt("Enter our secret code ❤️");
+
+    if(secret !== "minnumuthu"){
+
+        alert(
+            "Wrong code kuttyehh 🥺❤️"
+        );
+
+        return;
+    }
+
+    const envelope =
+        document.getElementById("mainEnvelope");
+
+    const flash =
+        document.getElementById("openFlash");
+
+    const intro =
+        document.getElementById("intro");
+
+    const introScene =
+        document.getElementById("introScene");
 
     if (!envelope || !flash) return;
 
-    // Add opening animation
     envelope.classList.add("opening");
+
     flash.classList.add("flash");
 
-    // After envelope opens
     setTimeout(() => {
+
         intro.style.display = "none";
+
         introScene.classList.add("active");
-        
-        // Initialize floating hearts
+
         initHearts();
-        
-        // Stagger text animations
+
         setTimeout(() => {
-            document.querySelector(".intro-title").classList.add("showIntro");
+
+            document
+            .querySelector(".intro-title")
+            .classList.add("showIntro");
+
         }, 200);
-        
+
         setTimeout(() => {
-            document.querySelector(".intro-subtitle").classList.add("showIntro");
+
+            document
+            .querySelector(".intro-subtitle")
+            .classList.add("showIntro");
+
         }, 800);
-        
+
         setTimeout(() => {
+
             showDaysCounter();
-            document.getElementById("daysCounter").classList.add("showIntro");
+
+            document
+            .getElementById("daysCounter")
+            .classList.add("showIntro");
+
         }, 1400);
-        
+
         setTimeout(() => {
-            document.getElementById("typing").classList.add("showIntro");
+
+            document
+            .getElementById("typing")
+            .classList.add("showIntro");
+
             typeIntroText();
+
         }, 2200);
+
     }, 900);
 }
 
