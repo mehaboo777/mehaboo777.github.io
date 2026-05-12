@@ -233,11 +233,32 @@ document.querySelectorAll(".polaroid, .heart-photo").forEach(el => {
    MEMORY PAGE
 ============================================ */
 
-document.addEventListener("DOMContentLoaded", () => {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-    const viewer = document.getElementById("memoryViewer");
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    /* STOP IF NOT MEMORY PAGE */
+const firebaseConfig = {
+    apiKey: "AIzaSyA-LByjC1Foj3zqaKVeugb70Gu0gV2jxWg",
+    authDomain: "our-memories-ab095.firebaseapp.com",
+    projectId: "our-memories-ab095",
+    storageBucket: "our-memories-ab095.appspot.com",
+    messagingSenderId: "862785444694",
+    appId: "1:862785444694:web:fb331620fa97aa9aea54f7"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const viewer =
+        document.getElementById("memoryViewer");
 
     if (!viewer) return;
 
@@ -253,16 +274,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const gallery =
         document.querySelector(".polaroid-gallery");
 
-    /* =========================================
-       OPEN VIEWER
-    ========================================= */
-
     function attachViewer(card){
 
         card.addEventListener("click", () => {
 
-            const img =
-                card.querySelector("img");
+            const img = card.querySelector("img");
 
             const caption =
                 card.querySelector(".polaroid-caption");
@@ -270,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
             viewerImg.src = img.src;
 
             viewerText.innerText =
-                caption ? caption.innerText : "Our Memory ❤️";
+                caption.innerText;
 
             viewer.classList.add("show");
 
@@ -278,17 +294,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* EXISTING IMAGES */
-
     document.querySelectorAll(".polaroid")
-        .forEach((card) => {
-
+        .forEach(card => {
             attachViewer(card);
         });
-
-    /* =========================================
-       CLOSE VIEWER
-    ========================================= */
 
     closeMemory.addEventListener("click", () => {
 
@@ -297,19 +306,33 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = "auto";
     });
 
-    viewer.addEventListener("click", (e) => {
+    // LOAD SAVED MEMORIES
 
-        if(e.target === viewer){
+    const querySnapshot =
+        await getDocs(collection(db, "memories"));
 
-            viewer.classList.remove("show");
+    querySnapshot.forEach((doc) => {
 
-            document.body.style.overflow = "auto";
-        }
+        const memory = doc.data();
+
+        const div =
+            document.createElement("div");
+
+        div.className = "polaroid";
+
+        div.innerHTML = `
+            <img src="${memory.image}">
+            <p class="polaroid-caption">
+                ${memory.caption}
+            </p>
+        `;
+
+        attachViewer(div);
+
+        gallery.prepend(div);
     });
 
-    /* =========================================
-       UPLOAD MODAL
-    ========================================= */
+    // UPLOAD
 
     const openUpload =
         document.getElementById("openUpload");
@@ -329,33 +352,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveMemoryBtn =
         document.getElementById("saveMemoryBtn");
 
-    /* OPEN MODAL */
-
     openUpload.addEventListener("click", () => {
 
         uploadModal.classList.add("show");
     });
-
-    /* CLOSE MODAL */
 
     closeUpload.addEventListener("click", () => {
 
         uploadModal.classList.remove("show");
     });
 
-    /* =========================================
-       SAVE MEMORY
-    ========================================= */
-
     saveMemoryBtn.addEventListener("click", () => {
 
         const file = photoInput.files[0];
 
-        if(!file) return;
+        if (!file) return;
 
         const reader = new FileReader();
 
-        reader.onload = function(e){
+        reader.onload = async function(e){
+
+            const imageData = e.target.result;
+
+            const caption =
+                captionInput.value || "Our Memory ❤️";
+
+            // SAVE TO FIRESTORE
+
+            await addDoc(
+                collection(db, "memories"),
+                {
+                    image: imageData,
+                    caption: caption
+                }
+            );
+
+            // SHOW DIRECTLY
 
             const div =
                 document.createElement("div");
@@ -363,21 +395,15 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "polaroid";
 
             div.innerHTML = `
-                <img src="${e.target.result}">
+                <img src="${imageData}">
                 <p class="polaroid-caption">
-                    ${captionInput.value || "Our Memory ❤️"}
+                    ${caption}
                 </p>
             `;
 
-            /* ADD VIEWER */
-
             attachViewer(div);
 
-            /* ADD TO TOP */
-
             gallery.prepend(div);
-
-            /* RESET */
 
             uploadModal.classList.remove("show");
 
