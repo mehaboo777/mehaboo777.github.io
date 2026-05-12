@@ -13,49 +13,51 @@
 
     <div class="chat-container">
 
-        <div class="chat-header">
+    <div class="chat-header">
 
-            <img src="m1.jpeg" class="chat-avatar">
+        <img src="m1.jpeg" class="chat-avatar">
 
-            <div>
-                <h2>My Love ❤️</h2>
-                <p class="online-status">
-                    Online
-                </p>
-            </div>
-
+        <div>
+            <h2>My Love ❤️</h2>
+            <p class="online-status">
+                Online
+            </p>
         </div>
 
-        <div class="chat-input-area">
+    </div>
 
-    <label for="imageInput" class="chat-action-btn">
-        📸
-    </label>
+    <div class="chat-messages" id="chatMessages"></div>
 
-    <input
-        type="file"
-        id="imageInput"
-        accept="image/*"
-        hidden
-    >
+    <div class="chat-input-area">
 
-    <button id="voiceBtn" class="chat-action-btn">
-        🎙️
-    </button>
+        <label for="imageInput" class="chat-action-btn">
+            📸
+        </label>
 
-    <input
-        type="text"
-        id="messageInput"
-        placeholder="Type a message..."
-    >
+        <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+            hidden
+        >
 
-    <button id="sendBtn">
-        ❤️
-    </button>
+        <button id="voiceBtn" class="chat-action-btn">
+            🎙️
+        </button>
 
-</div>
+        <input
+            type="text"
+            id="messageInput"
+            placeholder="Type a message..."
+        >
+
+        <button id="sendBtn">
+            ❤️
+        </button>
 
     </div>
+
+</div>
 
     <script type="module" src="chat.js"></script>
 

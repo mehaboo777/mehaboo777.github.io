@@ -2411,3 +2411,63 @@ canvas#bgHearts, canvas#proposalHearts {
     border-radius: 15px;
     display: block;
 }
+/* =========================
+   CHAT MOBILE RESPONSIVE
+========================= */
+
+@media(max-width: 768px){
+
+    .chat-header{
+        padding: 12px;
+    }
+
+    .chat-avatar{
+        width: 45px;
+        height: 45px;
+    }
+
+    .chat-header h2{
+        font-size: 16px;
+    }
+
+    .online-status{
+        font-size: 12px;
+    }
+
+    .chat-messages{
+        padding: 15px;
+    }
+
+    .message{
+        max-width: 85%;
+        font-size: 14px;
+        padding: 10px 13px;
+    }
+
+    .chat-input-area{
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .chat-input-area input{
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .chat-action-btn,
+    .chat-input-area button{
+
+        width: 45px;
+        height: 45px;
+
+        font-size: 18px;
+    }
+
+    .chat-image{
+        width: 180px;
+    }
+
+    audio{
+        width: 200px;
+    }
+}
