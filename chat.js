@@ -42,7 +42,21 @@ const sendBtn =
 
 const voiceBtn =
     document.getElementById("voiceBtn");
+let currentUser =
+    localStorage.getItem("chatUser");
 
+if(!currentUser){
+
+    currentUser =
+        prompt(
+            "Type: muthu or minnuh"
+        );
+
+    localStorage.setItem(
+        "chatUser",
+        currentUser
+    );
+}
 /* SEND MESSAGE */
 
 async function sendMessage(){
@@ -56,7 +70,7 @@ async function sendMessage(){
 
         text: text,
 
-        sender: "me",
+        sender: "currentUser",
 
         timestamp: serverTimestamp()
     });
