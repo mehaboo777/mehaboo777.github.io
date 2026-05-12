@@ -9,13 +9,6 @@ import {
     onSnapshot,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import {
-    getStorage,
-    ref,
-    uploadBytes,
-    getDownloadURL
-
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 const firebaseConfig = {
 
@@ -35,7 +28,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
-const storage = getStorage(app);
 
 const chatMessages =
     document.getElementById("chatMessages");
@@ -80,32 +72,6 @@ messageInput.addEventListener("keypress", (e) => {
 
         sendMessage();
     }
-});
-/* IMAGE MESSAGE */
-
-imageInput.addEventListener("change", async () => {
-
-    const file =
-        imageInput.files[0];
-
-    if(!file) return;
-
-    const storageRef =
-        ref(storage, `chatImages/${Date.now()}`);
-
-    await uploadBytes(storageRef, file);
-
-    const imageUrl =
-        await getDownloadURL(storageRef);
-
-    await addDoc(collection(db, "chat"), {
-
-        image: imageUrl,
-
-        sender: "me",
-
-        timestamp: serverTimestamp()
-    });
 });
 
 /* LIVE CHAT */
@@ -159,74 +125,20 @@ onSnapshot(q, (snapshot) => {
     chatMessages.scrollTop =
         chatMessages.scrollHeight;
 });
-/* VOICE RECORDING */
+/* PHOTO OPTION */
 
-let mediaRecorder;
+imageInput.addEventListener("click", () => {
 
-let audioChunks = [];
+    alert(
+        "Whatsappil ayakk ponnaahhh ❤️"
+    );
+});
 
-voiceBtn.addEventListener("click", async () => {
+/* VOICE OPTION */
 
-    if(!mediaRecorder ||
-       mediaRecorder.state === "inactive"){
+voiceBtn.addEventListener("click", () => {
 
-        const stream =
-            await navigator.mediaDevices
-            .getUserMedia({ audio: true });
-
-        mediaRecorder =
-            new MediaRecorder(stream);
-
-        mediaRecorder.start();
-
-        voiceBtn.innerText = "⏹️";
-
-        audioChunks = [];
-
-        mediaRecorder.addEventListener(
-            "dataavailable",
-            event => {
-
-            audioChunks.push(event.data);
-        });
-
-        mediaRecorder.addEventListener(
-            "stop",
-            async () => {
-
-            const audioBlob =
-                new Blob(audioChunks);
-
-            const storageRef =
-                ref(
-                    storage,
-                    `voiceMessages/${Date.now()}`
-                );
-
-            await uploadBytes(
-                storageRef,
-                audioBlob
-            );
-
-            const audioUrl =
-                await getDownloadURL(storageRef);
-
-            await addDoc(
-                collection(db, "chat"),
-                {
-                    audio: audioUrl,
-
-                    sender: "me",
-
-                    timestamp: serverTimestamp()
-                }
-            );
-
-            voiceBtn.innerText = "🎙️";
-        });
-
-    }else{
-
-        mediaRecorder.stop();
-    }
+    alert(
+        "Whatsappil ayakk chundhari penneehh 🎙️❤️"
+    );
 });
