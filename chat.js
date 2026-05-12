@@ -107,10 +107,10 @@ onSnapshot(q, (snapshot) => {
             document.createElement("div");
 
         div.className =
-            `message ${msg.sender === "me"
-                ? "sent"
-                : "received"
-            }`;
+    `message ${msg.sender === currentUser
+        ? "sent"
+        : "received"
+    }`;
 
         if(msg.image){
 
