@@ -943,17 +943,18 @@ canvas#bgHearts, canvas#proposalHearts {
 
 .viewer-close {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 38px;
-    height: 38px;
+    top: 90px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
     border: none;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 20px;
+    background: rgba(255,255,255,0.9);
+    color: #111;
+    font-size: 22px;
     cursor: pointer;
-    transition: 0.2s ease;
+    z-index: 5000;
+    transition: 0.25s ease;
 }
 
 .viewer-close:hover {
@@ -1218,8 +1219,17 @@ canvas#bgHearts, canvas#proposalHearts {
     }
 
     .viewer-close{
+        top: 90px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        z-index: 50000;
+    }
+    .add-photo-btn{
         top: 15px;
         right: 15px;
+        z-index: 3000;
     }
 }
 /* ============================================
